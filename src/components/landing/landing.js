@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import styles from './landing.module.css';
 // import img from '../../assets/svg 1.png';
-import img from '../../assets/undraw_nature_m5l.svg';
+// import img from '../../assets/undraw_nature_m5l.svg';
+import img from '../../assets/landing.svg';
 
 class Landing extends Component {
     render () {

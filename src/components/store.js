@@ -95,8 +95,8 @@ class Store extends Component {
           {this.state.veges.map((value) => ( 
             <Grid key={value} item>
             {this.state.vege == value.vege || this.state.vege == '' ?
-              <Paper style={{height: 450,
-    width: 300}} > <img style={{maxHeight: 200, maxWidth: 300}} src={value.img}></img>
+              <Paper style={{height: 530, backgroundColor: '#bef092',
+    width: 300}} > <img style={{height: 280, width: 300, objectFit: 'cover'}} src={value.img}></img>
     <div style={{padding: 10}}>
         <h4>{value.vege}</h4>
         <h5>{value.size}kg</h5>
