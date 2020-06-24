@@ -10,10 +10,28 @@
     width: 400px;
     background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
     font-family: 'Roboto', sans-serif;
+    text-align: center;
+    margin-bottom: 40px
+}
+
+.inner {
+    padding: 40px;
 }
 
 h1 {
     color: #3F3F8F;
     font-family: 'Roboto', sans-serif;
 
+}
+
+.slider {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    width: 300px;
+    margin-left: 40px
+}
+
+h5 span {
+    color: white
 }
