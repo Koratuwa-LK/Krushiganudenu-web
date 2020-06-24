@@ -53,6 +53,16 @@ class Store extends Component {
         })
     }
 
+    handlenav (vege1, size1, img1) {
+      this.props.history.push({
+        pathname: '/checkout',
+        state: {vege: vege1,
+      size: size1,
+    img: img1}
+  
+      })
+    }
+
 
     render () {
         return(
@@ -106,7 +116,7 @@ class Store extends Component {
        <Button variant="outlined" color="primary">
   details
 </Button>
-<Button variant="outlined" color="secondary">
+<Button onClick={()=> this.handlenav(value.vege,value.size, value.img)} variant="outlined" color="secondary">
   buy
 </Button></div>
     </div>

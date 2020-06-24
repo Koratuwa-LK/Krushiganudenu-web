@@ -1,0 +1,19 @@
+.checkout {
+    text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: center
+}
+
+.tile {
+    height: auto;
+    width: 400px;
+    background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+    font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+    color: #3F3F8F;
+    font-family: 'Roboto', sans-serif;
+
+}
