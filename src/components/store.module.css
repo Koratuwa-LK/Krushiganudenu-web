@@ -1,0 +1,41 @@
+h1{
+    color: #3F3F8F;
+    font-family: 'Roboto', sans-serif;
+}
+
+.filters {
+    /* text-align: center; */
+    /* display: flex; */
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
+    height: 200px;
+    /* background-color: white; */
+    background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+    text-align: center;
+
+    padding: 20px
+
+}
+.label {
+    margin-left: 100px;
+    margin-top: 40px;
+    font-family: 'Roboto', sans-serif;
+}
+.select {
+    
+    width: 200px;
+    margin-top:-60px;
+    font-family: 'Roboto', sans-serif;
+    
+
+}
+
+.select MenuItem {
+    width: 200px
+}
+
+.items {
+    flex-grow: 1;
+    padding: 50px;
+    font-family: 'Roboto', sans-serif;
+}

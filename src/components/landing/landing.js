@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from './landing.module.css';
-import img from '../../assets/svg 1.png';
+// import img from '../../assets/svg 1.png';
+import img from '../../assets/undraw_nature_m5l.svg';
 
 class Landing extends Component {
     render () {
@@ -12,7 +13,7 @@ class Landing extends Component {
             <nav>
                 <ul className={styles.navlinks}>
                     <li>HOME</li>
-                    <li>MARKETPLACE</li>
+                    <li><a href="/store">MARKETPLACE</a></li>
                     <li>ABOUT US</li>
                 </ul>
             </nav>

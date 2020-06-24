@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Landing from './components/landing/landing';
+import Store from './components/store';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
       <hr /> */}
       <Switch>
           <Route exact path='/' component={Landing} />
+          <Route exact path='/store' component={Store} />
           
       </Switch>
     </div>
