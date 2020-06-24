@@ -35,3 +35,9 @@ h1 {
 h5 span {
     color: white
 }
+
+.textfield {
+    margin-bottom: 40px;
+    justify-content: space-between;
+    /* height: 100% */
+}

@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 import styles from './checkout.module.css';
 import Slider from '@material-ui/core/Slider';
-import { Button } from '@material-ui/core';
+import { Button, TextField } from '@material-ui/core';
+import moment from 'moment';
+
 class Checkout extends Component {
 
     state = {
-        size : 10
+        size : 10,
+        buyer: '',
+        location: '',
+        
     }
 
     handleChange = (event, freshval) => {
@@ -14,9 +19,34 @@ class Checkout extends Component {
         })
     }
 
+    handleChangebuyer (event) {
+        this.setState({
+            buyer: event.target.value
+        })
+    }
+
+    handleChangelocation (event) {
+        this.setState({
+            location: event.target.value
+        })
+    }
+
     valuetext(value) {
         return `${value}°C`;
       }
+
+    checkout () {
+        console.log(
+            this.props.location.state.vege,
+            this.state.size,
+            this.props.location.state.seller,
+            this.props.location.state.eco_centre,
+            this.state.buyer,
+            this.state.location,
+            moment().format('MMMM Do YYYY, h:mm:ss a')
+        )
+    }
+
     render () {
         return (
             <div>
@@ -47,8 +77,13 @@ class Checkout extends Component {
         max={this.props.location.state.size}
       />
       </div>
+       <div className={styles.textfield}>
+      <TextField required label="Name" defaultValue="name" onChange={this.handleChangebuyer.bind(this)} value={this.state.buyer} />
+      <br/>
+      <TextField required label="Location" defaultValue="location" onChange={this.handleChangelocation.bind(this)} value={this.state.location}/>
+      </div>
 
-      <Button variant="contained" color="primary">
+      <Button variant="contained" onClick={() => {this.checkout()}} color="primary">
   checkout
 </Button>
                 </div>
