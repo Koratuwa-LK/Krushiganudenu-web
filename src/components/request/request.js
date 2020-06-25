@@ -3,6 +3,64 @@ import styles from './request.module.css';
 import { Grid, TextField, Select, MenuList, MenuItem, InputLabel, Slider, RadioGroup, FormControlLabel, Radio, Button } from '@material-ui/core';
 
 class Request extends Component {
+
+    state = {
+        name: '',
+        size: '',
+        eco_centre: '',
+        vege: '',
+        location: '',
+        shipping: ''
+    }
+
+    handleChangename (event) {
+        this.setState({
+            name: event.target.value
+        })
+    }
+
+    handleChangelocation (event) {
+        this.setState({
+            location: event.target.value
+        })
+    }
+
+    handleChangevege (event) {
+        this.setState({
+            vege: event.target.value
+        })
+    }
+
+    handleChangeshipping (event) {
+        this.setState({
+            shipping: event.target.value
+        })
+    }
+
+    handleChangeeco_centre (event) {
+        this.setState({
+            eco_centre: event.target.value
+        })
+    }
+
+    handleChangesize = (event, freshval) => {
+        this.setState({
+            size: freshval
+        })
+    }
+
+
+
+    request() {
+        console.log(this.state.name,
+        this.state.size,
+        this.state.eco_centre,
+        this.state.vege,
+        this.state.location,
+        this.state.shipping)
+    }
+
+
     render () {
         return (
             <div className={styles.main}>
@@ -13,9 +71,13 @@ class Request extends Component {
         <Grid item xs={12} sm={6}>
         <div className={styles.tile}>
         <h4>Fill out the request</h4>
-        <TextField className={styles.textfield} filled required label="Name" placeholder="Name" />
+        <TextField
+        value={this.state.name}
+        onChange={this.handleChangename.bind(this)} className={styles.textfield} filled required label="Name" placeholder="Name" />
         <br/>
-        <TextField className={styles.textfield} multiline rows={4} outlined required label="Location" placeholder="Location" />
+        <TextField
+        value={this.state.location}
+        onChange={this.handleChangelocation.bind(this)} className={styles.textfield} multiline rows={4} outlined required label="Location" placeholder="Location" />
 
         <br/>
 
@@ -24,8 +86,8 @@ class Request extends Component {
         className={styles.select}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-        //   value={this.state.age}
-        //   onChange={this.handleChange.bind(this)}
+          value={this.state.vege}
+          onChange={this.handleChangevege.bind(this)}
         >
           <MenuItem value={'Beet'}>Beet</MenuItem>
           <MenuItem value={'Cabbage'}>Cabbage</MenuItem>
@@ -38,8 +100,8 @@ class Request extends Component {
         className={styles.select}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-        //   value={this.state.age}
-        //   onChange={this.handleChange}
+            value={this.state.eco_centre}
+            onChange={this.handleChangeeco_centre.bind(this)}
         >
           <MenuItem value={'eco 1'}>eco 1</MenuItem>
           <MenuItem value={'eco 2'}>eco 2</MenuItem>
@@ -56,9 +118,9 @@ class Request extends Component {
         aria-labelledby="discrete-slider"
         valueLabelDisplay="auto"
         step={50}
-        // onChange={this.handleChange}
+        onChange={this.handleChangesize}
         marks
-        // min={10}
+        min={10}
         // max={this.props.location.state.size}
         max={1000}
       />
@@ -66,16 +128,16 @@ class Request extends Component {
       <br/>
       <InputLabel className={styles.label} >Stock clearence method</InputLabel>
      
-      <RadioGroup aria-label="gender" name="gender1" /* value={value} onChange={handleChange} */>
-        <FormControlLabel value="female" control={<Radio />} label="Ship with cash on delivery" />
-        <FormControlLabel value="male" control={<Radio />} label="Collect at the eco centre" />
+      <RadioGroup aria-label="gender" name="gender1" value={this.state.shipping} onChange={this.handleChangeshipping.bind(this)}>
+        <FormControlLabel value="ship" control={<Radio />} label="Ship with cash on delivery" />
+        <FormControlLabel value="collect" control={<Radio />} label="Collect at the eco centre" />
         {/* <FormControlLabel value="other" control={<Radio />} label="Other" /> */}
         {/* <FormControlLabel value="disabled" disabled control={<Radio />} label="(Disabled option)" /> */}
       </RadioGroup>
 
       <br/>
 
-      <Button variant="contained">make the request</Button>
+      <Button onClick={() => {this.request()}} variant="contained">make the request</Button>
 
 
         </div>
