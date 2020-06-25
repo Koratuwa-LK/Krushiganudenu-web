@@ -1,16 +1,23 @@
 body {
-    max-height: 900px
+    max-height: 900px;
+    /* background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%); */
+    /* background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%); */
     /* background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%); */
+}
+
+.main {
+    background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
 }
 
 .hold {
     height: 680px;
     /* height: 500px; */
-    width: 800px;
+    width: 1600px;
     /* margin-top: -80px; */
     margin-left: -158px;
     background-size: cover;
     position: fixed;
+    background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
 
 }
 
@@ -22,6 +29,7 @@ body {
     /* max-height: 20%; */
     object-fit: cover;
     left: -10%;
+    /* background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%); */
     
 
 }
@@ -53,7 +61,7 @@ nav {
     position: fixed;
     top: 4%;
     width: 50%;
-    margin-left: 42%
+    margin-left: 42%;
 }
 
 ul {
