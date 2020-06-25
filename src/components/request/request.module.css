@@ -1,0 +1,22 @@
+.main {
+    height: 100%;
+}
+
+.tile {
+    height: auto;
+    background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+    font-family: 'Roboto', sans-serif;
+    padding: 20px
+}
+
+.textfield {
+    width: 250px
+}
+
+.label {
+    margin-top: 20px
+}
+.select {
+    width: 200px;
+    margin-top: 10px
+}

@@ -3,6 +3,7 @@ import styles from './checkout.module.css';
 import Slider from '@material-ui/core/Slider';
 import { Button, TextField } from '@material-ui/core';
 import moment from 'moment';
+import axios from '../../stocks-list.js';
 
 class Checkout extends Component {
 
@@ -45,6 +46,14 @@ class Checkout extends Component {
             this.state.location,
             moment().format('MMMM Do YYYY, h:mm:ss a')
         )
+
+        axios.post('/exchanges.json',{seller: this.props.location.state.seller, buyer: this.state.buyer, crop : this.props.location.state.vege, size: this.props.location.state.size, buyer_location: this.state.location, eco_centre: this.props.location.state.eco_centre, checkout_time: moment().format('MMMM Do YYYY, h:mm:ss a')})
+        .then(response => {
+            console.log(response.data)
+        }).catch(err => {
+            console.log(err)
+        })
+
     }
 
     render () {
@@ -66,7 +75,7 @@ class Checkout extends Component {
                 <div className={styles.slider}>
                 
                 <Slider
-        defaultValue={30}
+        defaultValue={this.state.size}
         getAriaValueText={this.valuetext}
         aria-labelledby="discrete-slider"
         valueLabelDisplay="auto"

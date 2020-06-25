@@ -26,7 +26,12 @@ class Landing extends Component {
 
             <div className={styles.btn}>
             <h4><a href="/">SIGN IN</a></h4>
+            
             </div>
+
+            <div className={styles.btn2}>
+            
+            <h4><a href="/request">STOCK REQUEST</a></h4></div>
             </div>
         )
     }

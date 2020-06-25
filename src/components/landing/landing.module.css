@@ -9,7 +9,8 @@ body {
     width: 800px;
     /* margin-top: -80px; */
     margin-left: -158px;
-    background-size: cover
+    background-size: cover;
+    position: fixed;
 
 }
 
@@ -23,6 +24,30 @@ body {
     left: -10%;
     
 
+}
+
+.btn2 {
+    height: 60px;
+    width: 165px;
+    /* padding: 20px; */
+    top: 55%;
+    left: 60%;
+    position: absolute;
+    background-color:  #3F3F8F;
+    text-align: center;
+    border-radius: 20px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+.btn2 h2 {
+    left: 40%;
+    color: white;
+}
+
+.btn2 h4 a {
+    left: 40%;
+    color: white;
 }
 nav {
     position: fixed;
