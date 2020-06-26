@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from './request.module.css';
 import { Grid, TextField, Select, MenuList, MenuItem, InputLabel, Slider, RadioGroup, FormControlLabel, Radio, Button } from '@material-ui/core';
+import axios from '../../stocks-list';
 
 class Request extends Component {
 
@@ -10,7 +11,8 @@ class Request extends Component {
         eco_centre: '',
         vege: '',
         location: '',
-        shipping: ''
+        shipping: '',
+        price: ''
     }
 
     handleChangename (event) {
@@ -49,6 +51,14 @@ class Request extends Component {
         })
     }
 
+    handleChangeprice (event) {
+        this.setState({
+            price: event.target.value
+        })
+    }
+
+    
+
 
 
     request() {
@@ -58,6 +68,10 @@ class Request extends Component {
         this.state.vege,
         this.state.location,
         this.state.shipping)
+
+        axios.post('/requests.json', {vege: this.state.vege, size: this.state.size, price: this.state.price, buyer: this.state.name, eco_centre: this.state.eco_centre, buyer_location: this.state.location, shipping: this.state.shipping})
+
+
     }
 
 
@@ -73,16 +87,23 @@ class Request extends Component {
         <h4>Fill out the request</h4>
         <TextField
         value={this.state.name}
-        onChange={this.handleChangename.bind(this)} className={styles.textfield} filled required label="Name" placeholder="Name" />
+        onChange={this.handleChangename.bind(this)} className={styles.textfield} variant="filled" required label="Name" placeholder="Name" />
         <br/>
         <TextField
         value={this.state.location}
-        onChange={this.handleChangelocation.bind(this)} className={styles.textfield} multiline rows={4} outlined required label="Location" placeholder="Location" />
+        onChange={this.handleChangelocation.bind(this)} className={styles.textfield} multiline rows={4} variant="filled" required label="Location" placeholder="Location" />
+
+        <br/>
+
+        <TextField
+        value={this.state.price}
+        onChange={this.handleChangeprice.bind(this)} className={styles.textfield} variant="filled" required label="Price you ask(rs)" placeholder="Price you ask" />
 
         <br/>
 
         <InputLabel className={styles.label} id="demo-simple-select-label">Vegetable</InputLabel>
         <Select
+        variant="filled"
         className={styles.select}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
@@ -97,6 +118,7 @@ class Request extends Component {
 
         <InputLabel className={styles.label} >Eco Centre</InputLabel>
         <Select
+        variant="filled"
         className={styles.select}
           labelId="demo-simple-select-label"
           id="demo-simple-select"

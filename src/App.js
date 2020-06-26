@@ -6,6 +6,7 @@ import Landing from './components/landing/landing';
 import Store from './components/store/store';
 import Checkout from './components/checkout/checkout';
 import Request from './components/request/request';
+import Pool from './components/pool/pool';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
           <Route exact path='/store' component={Store} />
           <Route exact path='/checkout' component={Checkout} />
           <Route exact path='/request' component={Request} />
+          <Route exact path='/pool' component={Pool} />
           
       </Switch>
     </div>
