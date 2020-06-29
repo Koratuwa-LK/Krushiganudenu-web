@@ -79,6 +79,7 @@ class Request extends Component {
         return (
             <div className={styles.main}>
             <h1>REQUEST STOCKS</h1>
+            <a href="/pool">CHECK THE POOL</a>
 
            
         <Grid container justify="center" spacing={2}>
@@ -139,7 +140,7 @@ class Request extends Component {
         // getAriaValueText={this.valuetext}
         aria-labelledby="discrete-slider"
         valueLabelDisplay="auto"
-        step={50}
+        step={40}
         onChange={this.handleChangesize}
         marks
         min={10}

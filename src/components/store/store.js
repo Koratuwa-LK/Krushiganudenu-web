@@ -41,7 +41,7 @@ class Store extends Component {
 
   componentDidMount() {
     
-    instance.get('/stocks.json')
+    instance.get('/Stocks.json')
       .then(response => {
         for(let key in response.data){
           console.log(response.data[key])
@@ -83,7 +83,7 @@ class Store extends Component {
             <MenuItem value={'Lettuce'}>Lettuce</MenuItem> */}
             {
               this.state.veges.map((value)=>{
-                return <MenuItem value={value.vege}>{value.vege}</MenuItem>
+                return <MenuItem value={value.crop}>{value.crop}</MenuItem>
               })
             }
 
@@ -111,19 +111,19 @@ class Store extends Component {
                   <Grid key={value} item>
                     {this.state.vege === value.vege || this.state.vege === '' ?
                       <Paper style={{
-                        height: 530, backgroundColor: '#bef092',
+                        height: 530, backgroundColor: 'white',
                         width: 300
-                      }} > <img style={{ height: 280, width: 300, objectFit: 'cover' }} src={value.img}></img>
+                      }} > <img style={{ height: 280, width: 300, objectFit: 'cover' }} src={value.image}></img>
                         <div style={{ padding: 10 }}>
-                          <h4>{value.vege}</h4>
-                          <h5>{value.size}kg</h5>
-                          <h5>{value.seller}</h5>
-                          <h5>{value.eco_centre}</h5>
+                          <h4>{value.crop}</h4>
+                          <h5>{value.quantity}kg</h5>
+                          <h5>{value.name}</h5>
+                          <h5>{value.economicCentre}</h5>
                           <div style={{ display: 'flex' }}>
                             <Button variant="outlined" color="primary">
                               details
 </Button>
-                            <Button onClick={() => this.handlenav(value.vege, value.size, value.img, value.seller, value.eco_centre)} variant="outlined" color="secondary">
+                            <Button onClick={() => this.handlenav(value.crop, value.quantity, value.image, value.name, value.economicCentre)} variant="outlined" color="secondary">
                               buy
 </Button></div>
                         </div>
