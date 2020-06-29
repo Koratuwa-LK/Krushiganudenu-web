@@ -21,6 +21,7 @@ class Store extends Component {
     this.setState({
       vege: event.target.value
     })
+    console.log(this.state.vege)
   }
 
   handlenav(vege1, size1, img1, seller1, eco_centre1) {
@@ -76,10 +77,16 @@ class Store extends Component {
             value={this.state.age}
             onChange={this.handleChange.bind(this)}
           >
-            <MenuItem value={'Beet'}>Beet</MenuItem>
+            {/* <MenuItem value={'Beet'}>Beet</MenuItem>
             <MenuItem value={'Cabbage'}>Cabbage</MenuItem>
             <MenuItem value={'Potato'}>Potato</MenuItem>
-            <MenuItem value={'Lettuce'}>Lettuce</MenuItem>
+            <MenuItem value={'Lettuce'}>Lettuce</MenuItem> */}
+            {
+              this.state.veges.map((value)=>{
+                return <MenuItem value={value.vege}>{value.vege}</MenuItem>
+              })
+            }
+
           </Select>
 
           <InputLabel className={styles.label} >Eco Centre</InputLabel>
@@ -102,7 +109,7 @@ class Store extends Component {
               <Grid container justify="center" spacing={2}>
                 {this.state.veges.map((value) => (
                   <Grid key={value} item>
-                    {this.state.vege == value.vege || this.state.vege == '' ?
+                    {this.state.vege === value.vege || this.state.vege === '' ?
                       <Paper style={{
                         height: 530, backgroundColor: '#bef092',
                         width: 300
