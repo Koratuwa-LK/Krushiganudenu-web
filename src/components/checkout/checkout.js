@@ -8,10 +8,10 @@ import axios from '../../stocks-list.js';
 class Checkout extends Component {
 
     state = {
-        size : 10,
+        size: 10,
         buyer: '',
         location: '',
-        
+
     }
 
     handleChange = (event, freshval) => {
@@ -20,13 +20,13 @@ class Checkout extends Component {
         })
     }
 
-    handleChangebuyer (event) {
+    handleChangebuyer(event) {
         this.setState({
             buyer: event.target.value
         })
     }
 
-    handleChangelocation (event) {
+    handleChangelocation(event) {
         this.setState({
             location: event.target.value
         })
@@ -34,9 +34,9 @@ class Checkout extends Component {
 
     valuetext(value) {
         return `${value}°C`;
-      }
+    }
 
-    checkout () {
+    checkout() {
         console.log(
             this.props.location.state.vege,
             this.state.size,
@@ -47,60 +47,61 @@ class Checkout extends Component {
             moment().format('MMMM Do YYYY, h:mm:ss a')
         )
 
-        axios.post('/exchanges.json',{seller: this.props.location.state.seller, buyer: this.state.buyer, crop : this.props.location.state.vege, size: this.props.location.state.size, buyer_location: this.state.location, eco_centre: this.props.location.state.eco_centre, checkout_time: moment().format('MMMM Do YYYY, h:mm:ss a')})
-        .then(response => {
-            console.log(response.data)
-        }).catch(err => {
-            console.log(err)
-        })
+        axios.post('/exchanges.json', { seller: this.props.location.state.seller, buyer: this.state.buyer, crop: this.props.location.state.vege, size: this.props.location.state.size, buyer_location: this.state.location, eco_centre: this.props.location.state.eco_centre, checkout_time: moment().format('MMMM Do YYYY, h:mm:ss a') })
+            .then(response => {
+                console.log(response.data)
+            }).catch(err => {
+                console.log(err)
+            })
 
     }
 
-    render () {
+    render() {
+        console.log(this.props)
         return (
             <div>
                 <h1>CHECKOUT</h1>
 
-                
+
 
                 <div className={styles.checkout}>
-                <div className={styles.tile}>
-                <img style={{height: 400, width: 400, objectFit: 'cover'}} src={this.props.location.state.img}>
-                </img>
-                <h4>{this.props.location.state.vege}</h4>
-                <h4>{this.props.location.state.seller}</h4>
-                <h4>{this.props.location.state.eco_centre}</h4>
-                <h4>stock {this.props.location.state.size}kg</h4>
-                <h5>size <span>{this.state.size}</span>(kg)</h5>
-                <div className={styles.slider}>
-                
-                <Slider
-        defaultValue={this.state.size}
-        getAriaValueText={this.valuetext}
-        aria-labelledby="discrete-slider"
-        valueLabelDisplay="auto"
-        step={10}
-        onChange={this.handleChange}
-        marks
-        min={10}
-        max={this.props.location.state.size}
-      />
-      </div>
-       <div className={styles.textfield}>
-      <TextField required label="Name" defaultValue="name" onChange={this.handleChangebuyer.bind(this)} value={this.state.buyer} />
-      <br/>
-      <TextField required label="Location" defaultValue="location" onChange={this.handleChangelocation.bind(this)} value={this.state.location}/>
-      </div>
+                    <div className={styles.tile}>
+                        <img style={{ height: 400, width: 400, objectFit: 'cover' }} src={this.props.location.state.img}>
+                        </img>
+                        <h4>{this.props.location.state.vege}</h4>
+                        <h4>{this.props.location.state.seller}</h4>
+                        <h4>{this.props.location.state.eco_centre}</h4>
+                        <h4>stock {this.props.location.state.size}kg</h4>
+                        <h5>size <span>{this.state.size}</span>(kg)</h5>
+                        <div className={styles.slider}>
 
-      <Button variant="contained" onClick={() => {this.checkout()}} color="primary">
-  checkout
-</Button>
-                </div>
+                            <Slider
+                                defaultValue={this.state.size}
+                                getAriaValueText={this.valuetext}
+                                aria-labelledby="discrete-slider"
+                                valueLabelDisplay="auto"
+                                step={10}
+                                onChange={this.handleChange}
+                                marks
+                                min={10}
+                                max={this.props.location.state.size}
+                            />
+                        </div>
+                        <div className={styles.textfield}>
+                            <TextField required label="Name" defaultValue="name" onChange={this.handleChangebuyer.bind(this)} value={this.state.buyer} />
+                            <br />
+                            <TextField required label="Location" defaultValue="location" onChange={this.handleChangelocation.bind(this)} value={this.state.location} />
+                        </div>
+
+                        <Button variant="contained" onClick={() => { this.checkout() }} color="primary">
+                            checkout
+                        </Button>
+                    </div>
                 </div>
 
-                
+
             </div>
-            
+
         )
     }
 }

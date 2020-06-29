@@ -7,28 +7,20 @@ import Store from './components/store/store';
 import Checkout from './components/checkout/checkout';
 import Request from './components/request/request';
 import Pool from './components/pool/pool';
+import Farmer from './components/farmer';
 
 
 function App() {
   return (
     <Router>
     <div>
-  {/*     <h2>Welcome to React Router Tutorial</h2>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <ul className="navbar-nav mr-auto">
-        <li><Link to={'/'} className="nav-link"> Home </Link></li>
-        <li><Link to={'/contact'} className="nav-link">Contact</Link></li>
-        <li><Link to={'/about'} className="nav-link">About</Link></li>
-      </ul>
-      </nav>
-      <hr /> */}
       <Switch>
           <Route exact path='/' component={Landing} />
           <Route exact path='/store' component={Store} />
           <Route exact path='/checkout' component={Checkout} />
           <Route exact path='/request' component={Request} />
           <Route exact path='/pool' component={Pool} />
-          
+          <Route exact path='/farmer' component={Farmer} />
       </Switch>
     </div>
   </Router>

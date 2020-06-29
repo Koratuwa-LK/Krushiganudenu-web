@@ -5,6 +5,7 @@ import styles from './landing.module.css';
 import img from '../../assets/landing.svg';
 
 class Landing extends Component {
+    
     render () {
         return (
             <div className={styles.main}>
