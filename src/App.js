@@ -8,22 +8,29 @@ import Checkout from './components/checkout/checkout';
 import Request from './components/request/request';
 import Pool from './components/pool/pool';
 import Farmer from './components/farmer';
-
+import { AuthProvider } from './Auth';
+import PrivateRoute from "./PrivateRoute";
+import login from './login';
+import signUp from './signUp';
 
 function App() {
-  return (
+  return(
+  <AuthProvider>
     <Router>
     <div>
       <Switch>
           <Route exact path='/' component={Landing} />
+          <Route exact path="/login" component={login} />
+          <Route exact path="/signup" component={signUp} />
           <Route exact path='/store' component={Store} />
-          <Route exact path='/checkout' component={Checkout} />
-          <Route exact path='/request' component={Request} />
-          <Route exact path='/pool' component={Pool} />
+          <PrivateRoute exact path='/checkout' component={Checkout} />
+          <PrivateRoute exact path='/request' component={Request} />
+          <PrivateRoute exact path='/pool' component={Pool} />
           <Route exact path='/farmer' component={Farmer} />
       </Switch>
     </div>
   </Router>
+  </AuthProvider>
   );
 }
 

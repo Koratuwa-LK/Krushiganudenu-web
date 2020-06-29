@@ -3,12 +3,14 @@ import styles from './landing.module.css';
 // import img from '../../assets/svg 1.png';
 // import img from '../../assets/undraw_nature_m5l.svg';
 import img from '../../assets/landing.svg';
+import app from '../../firebase' 
 
 class Landing extends Component {
     
     render () {
         return (
             <div className={styles.main}>
+                            <button onClick={()=>app.auth().signOut()}>sign Out</button>
             <div className={styles.hold}>
             <img src={img}></img>
             </div>
@@ -29,10 +31,11 @@ class Landing extends Component {
             <h4><a href="/">SIGN IN</a></h4>
             
             </div>
-
+            
             <div className={styles.btn2}>
             
             <h4><a href="/request">STOCK REQUEST</a></h4></div>
+
             </div>
         )
     }
