@@ -13,6 +13,7 @@ import PrivateRoute from "./PrivateRoute";
 import login from './login';
 import signUp from './signUp';
 
+
 function App() {
   return(
   <AuthProvider>

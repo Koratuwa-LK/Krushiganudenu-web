@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styles from './landing.module.css';
 // import img from '../../assets/svg 1.png';
 // import img from '../../assets/undraw_nature_m5l.svg';
@@ -7,11 +7,26 @@ import app from '../../firebase'
 import { Link } from 'react-router-dom'
 import { AuthContext } from "../../Auth";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { useTranslation } from 'react-i18next';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+
 function Landing() {
+
+    const { t, i18n } = useTranslation();
+    const [lang, setlang] = useState('')
 
     const { currentUser } = useContext(AuthContext);
 
- 
+    function changelang(e) {
+        setlang(e.target.value)
+        i18n.changeLanguage(e.target.value)
+    }
+
+    const [age, setAge] = React.useState('');
 
 
     return (
@@ -24,10 +39,19 @@ function Landing() {
             </div>
             <nav>
                 <ul className={styles.navlinks}>
-                    <li>HOME</li>
-                    <li><a href="/store">MARKETPLACE</a></li>
-                    <li>ABOUT US</li>
+                    <li>{t('home')}</li>
+                    <li><a href="/store">{t('marketplace')}</a></li>
+                    <li>{t('aboutus')}</li>
 
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={lang}
+                        onChange={changelang}
+                    >
+                        <MenuItem value='en'>English</MenuItem>
+                        <MenuItem value='sn'>සිංහල</MenuItem>
+                    </Select>
 
                     {currentUser !== null &&
                         <li style={{ cursor: "pointer" }} onClick={() => app.auth().signOut()}><ExitToAppIcon /></li>
@@ -57,7 +81,7 @@ function Landing() {
 
             <div className={styles.btn2}>
 
-                <h4><a href="/request">STOCK REQUEST</a></h4></div>
+                <h4><a href="/request">{t('stockrequest')}</a></h4></div>
 
         </div>
     )
