@@ -1,44 +1,67 @@
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
 import styles from './landing.module.css';
 // import img from '../../assets/svg 1.png';
 // import img from '../../assets/undraw_nature_m5l.svg';
 import img from '../../assets/landing.svg';
-import app from '../../firebase' 
+import app from '../../firebase'
+import { Link } from 'react-router-dom'
+import { AuthContext } from "../../Auth";
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+function Landing() {
 
-class Landing extends Component {
-    
-    render () {
-        return (
-            <div className={styles.main}>
-                            <button onClick={()=>app.auth().signOut()}>sign Out</button>
+    const { currentUser } = useContext(AuthContext);
+
+ 
+
+
+    return (
+
+
+        <div className={styles.main}>
+
             <div className={styles.hold}>
-            <img src={img}></img>
+                <img src={img}></img>
             </div>
             <nav>
                 <ul className={styles.navlinks}>
                     <li>HOME</li>
                     <li><a href="/store">MARKETPLACE</a></li>
                     <li>ABOUT US</li>
+
+
+                    {currentUser !== null &&
+                        <li style={{ cursor: "pointer" }} onClick={() => app.auth().signOut()}><ExitToAppIcon /></li>
+                    }
                 </ul>
+
             </nav>
 
             <div className={styles.slug}>
-            <h1>KRUSHIGANUDENU.LK</h1>
-            <p>krushiganudenu krushiganudenu krushiganudenu krushiganudenu krushiganudenu krushiganudenu</p>
+                <h1>KRUSHIGANUDENU.LK</h1>
+                <p>krushiganudenu krushiganudenu krushiganudenu krushiganudenu krushiganudenu krushiganudenu</p>
             </div>
 
-            <div className={styles.btn}>
-            <h4><a href="/">SIGN IN</a></h4>
-            
-            </div>
-            
+
+
+            {currentUser === null &&
+                <div className={styles.btn}>
+                    <h4>
+                        <Link to="/login">
+                            <a>SIGN IN</a>
+                        </Link>
+                    </h4>
+
+                </div>
+            }
+
+
             <div className={styles.btn2}>
-            
-            <h4><a href="/request">STOCK REQUEST</a></h4></div>
 
-            </div>
-        )
-    }
+                <h4><a href="/request">STOCK REQUEST</a></h4></div>
+
+        </div>
+    )
 }
+
 
 export default Landing;
