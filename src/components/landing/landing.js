@@ -13,6 +13,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import Tooltip from '@material-ui/core/Tooltip';
 
 function Landing() {
 
@@ -54,7 +55,11 @@ function Landing() {
                     </Select>
 
                     {currentUser !== null &&
-                        <li style={{ cursor: "pointer" }} onClick={() => app.auth().signOut()}><ExitToAppIcon /></li>
+                        <li style={{ cursor: "pointer" }} onClick={() => app.auth().signOut()}>
+                             <Tooltip title={t('logout')}>
+                            <ExitToAppIcon />
+                            </Tooltip>
+                            </li>
                     }
                 </ul>
 

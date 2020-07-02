@@ -4,18 +4,22 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Grid from '@material-ui/core/Grid';
-
+import { withTranslation } from 'react-i18next';
 import Paper from '@material-ui/core/Paper';
 import { Button } from '@material-ui/core';
 import instance from '../../stocks-list';
 
 class Store extends Component {
 
+
+
   state = {
     vege: '',
 
     veges: []
   }
+
+
 
   handleChange(event) {
     this.setState({
@@ -40,36 +44,39 @@ class Store extends Component {
   }
 
   componentDidMount() {
-    
+
+
     instance.get('/stocks.json')
       .then(response => {
-        for(let key in response.data){
+        for (let key in response.data) {
           console.log(response.data[key])
-          
-          const  tempStock = [];
-          for(let key in response.data){
-             tempStock.unshift(
-               {
-                 ...response.data[key]
-               }
-             )
+
+          const tempStock = [];
+          for (let key in response.data) {
+            tempStock.unshift(
+              {
+                ...response.data[key]
+              }
+            )
           }
-          this.setState({veges:tempStock})
+          this.setState({ veges: tempStock })
         }
-        
+
       })
 
-      console.log(this.state)
+    console.log(this.state)
 
   }
 
   render() {
+    const { t } = this.props;
+
     return (
       <div className={styles.main}>
-        <h1>KRUSHIGANUDENU STORE</h1>
+        <h1>{t('krushiganudenu')} {t('store')}</h1>
 
         <div className={styles.filters}>
-          <InputLabel className={styles.label} id="demo-simple-select-label">Vegetable</InputLabel>
+          <InputLabel className={styles.label} id="demo-simple-select-label">{t('vegetabletype')}</InputLabel>
           <Select
             className={styles.select}
             labelId="demo-simple-select-label"
@@ -82,14 +89,14 @@ class Store extends Component {
             <MenuItem value={'Potato'}>Potato</MenuItem>
             <MenuItem value={'Lettuce'}>Lettuce</MenuItem> */}
             {
-              this.state.veges.map((value)=>{
+              this.state.veges.map((value) => {
                 return <MenuItem value={value.vege}>{value.vege}</MenuItem>
               })
             }
 
           </Select>
 
-          <InputLabel className={styles.label} >Eco Centre</InputLabel>
+          <InputLabel className={styles.label} >{t('ecocenter')}</InputLabel>
           <Select
             className={styles.select}
             labelId="demo-simple-select-label"
@@ -121,11 +128,11 @@ class Store extends Component {
                           <h5>{value.eco_centre}</h5>
                           <div style={{ display: 'flex' }}>
                             <Button variant="outlined" color="primary">
-                              details
-</Button>
+                              {t('details')}
+                            </Button>
                             <Button onClick={() => this.handlenav(value.vege, value.size, value.img, value.seller, value.eco_centre)} variant="outlined" color="secondary">
-                              buy
-</Button></div>
+                              {t('buy')}
+                            </Button></div>
                         </div>
                       </Paper> : null}
                   </Grid>
@@ -140,4 +147,4 @@ class Store extends Component {
   }
 }
 
-export default Store;
+export default withTranslation()(Store);
