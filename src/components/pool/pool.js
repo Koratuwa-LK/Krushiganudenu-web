@@ -145,7 +145,8 @@ class Pool extends Component {
                     
                       <Paper style={{
                         height: 530, backgroundColor: 'white',
-                        width: 300
+                        width: 300,
+                        marginBottom: 10
                       }} > <img style={{ height: 280, width: 300, objectFit: 'cover' }} src={require ('../../assets/Beet-Salad-001.jpg')}></img>
                         <div style={{ padding: 10 }}>
                           <h4>Beet</h4>
@@ -166,6 +167,38 @@ class Pool extends Component {
               
               </Grid>
             </Grid>
+
+
+            <Grid item xs={12}>
+              <Grid container justify="center" spacing={2}>
+                
+                  <Grid item>
+                    
+                      <Paper style={{
+                        height: 530, backgroundColor: 'white',
+                        width: 300, marginBottom: 10, elevation: 10
+                      }} > <img style={{ height: 280, width: 300, objectFit: 'cover' }} src={require ('../../assets/pos.jpg')}></img>
+                        <div style={{ padding: 10 }}>
+                          <h4>Potato</h4>
+                          <h5>total need <span style={{color: 'rgb(255, 94, 0)'}}>{this.state.mainblock.Potato.poolsize / 2} kg</span> </h5>
+                          <h5>average asking price Rs <span style={{color: 'rgb(255, 94, 0)'}}>{this.state.mainblock.Potato.price/ this.state.mainblock.Potato.count}</span></h5>
+                          {/* <h5>{value.economicCentre}</h5> */}
+                          {/* <div style={{ display: 'flex' }}> */}
+                            {/* <Button variant="outlined" color="primary"> */}
+                              {/* details */}
+{/* </Button> */}
+                            {/* <Button onClick={() => this.handlenav(value.vege, value.size, value.img, value.seller, value.eco_centre)} variant="outlined" color="secondary"> */}
+                              {/* buy */}
+{/* </Button> */}
+{/* </div> */}
+                        </div>
+                      </Paper> 
+                  </Grid>
+              
+              </Grid>
+            </Grid>
+
+
           </Grid>
 
                 {/* <Grid container>

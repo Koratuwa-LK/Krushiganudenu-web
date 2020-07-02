@@ -111,10 +111,16 @@ class Request extends Component {
           value={this.state.vege}
           onChange={this.handleChangevege.bind(this)}
         >
-          <MenuItem value={'Beet'}>Beet</MenuItem>
-          <MenuItem value={'Cabbage'}>Cabbage</MenuItem>
-          <MenuItem value={'Potato'}>Potato</MenuItem>
-          <MenuItem value={'Lettuce'}>Lettuce</MenuItem>
+          <MenuItem value={'Potato (අල)'}>Potato (අල)</MenuItem>
+          <MenuItem value={'Beet (බීට්)'}>Beet (බීට්)</MenuItem>
+          <MenuItem value={'Carrot (කැරට්)'}>Carrot (කැරට්)</MenuItem>
+          <MenuItem value={'Pumpkin (වට්ටක්කා)'}>Pumpkin (වට්ටක්කා)</MenuItem>
+          <MenuItem value={'Cabbage (ගෝවා)'}>Cabbage (ගෝවා)</MenuItem>
+          <MenuItem value={'Brinjal (වම්බටු)'}>Brinjal (වම්බටු)</MenuItem>
+          <MenuItem value={'Beans (බෝංචි)'}>Beans (බෝංචි)</MenuItem>
+          <MenuItem value={'Tomato (තක්කාලි)'}>Tomato (තක්කාලි)</MenuItem>
+          <MenuItem value={'Chili (මිරිස්)'}>Chili (මිරිස්)</MenuItem>
+          
         </Select>
 
         <InputLabel className={styles.label} >Eco Centre</InputLabel>
@@ -152,7 +158,7 @@ class Request extends Component {
       <InputLabel className={styles.label} >Stock clearence method</InputLabel>
      
       <RadioGroup aria-label="gender" name="gender1" value={this.state.shipping} onChange={this.handleChangeshipping.bind(this)}>
-        <FormControlLabel value="ship" control={<Radio />} label="Ship with cash on delivery" />
+        <FormControlLabel value="ship" style={{color: 'black'}} control={<Radio />} label="Ship with cash on delivery" color="black"/>
         <FormControlLabel value="collect" control={<Radio />} label="Collect at the eco centre" />
         {/* <FormControlLabel value="other" control={<Radio />} label="Other" /> */}
         {/* <FormControlLabel value="disabled" disabled control={<Radio />} label="(Disabled option)" /> */}
