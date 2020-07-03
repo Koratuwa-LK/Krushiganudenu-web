@@ -16,7 +16,8 @@ class Store extends Component {
   state = {
     vege: '',
 
-    veges: []
+    veges: [],
+    eco: ''
   }
 
 
@@ -24,6 +25,13 @@ class Store extends Component {
   handleChange(event) {
     this.setState({
       vege: event.target.value
+    })
+    console.log(this.state.vege)
+  }
+
+  handleChangeeco(event) {
+    this.setState({
+      eco: event.target.value
     })
     console.log(this.state.vege)
   }
@@ -44,8 +52,6 @@ class Store extends Component {
   }
 
   componentDidMount() {
-
-
     instance.get('/stocks.json')
       .then(response => {
         for (let key in response.data) {
@@ -68,6 +74,13 @@ class Store extends Component {
 
   }
 
+  reset () {
+    this.setState({
+      vege: '',
+      eco: ''
+    })
+  }
+
   render() {
     const { t } = this.props;
 
@@ -81,9 +94,10 @@ class Store extends Component {
             className={styles.select}
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={this.state.age}
+            value={this.state.vege}
             onChange={this.handleChange.bind(this)}
           >
+
             {/* <MenuItem value={'Beet'}>Beet</MenuItem>
             <MenuItem value={'Cabbage'}>Cabbage</MenuItem>
             <MenuItem value={'Potato'}>Potato</MenuItem>
@@ -91,8 +105,24 @@ class Store extends Component {
             {
               this.state.veges.map((value) => {
                 return <MenuItem value={value.vege}>{value.vege}</MenuItem>
+
+          <MenuItem value={'Potato (අල)'}>Potato (අල)</MenuItem>
+          <MenuItem value={'Beet (බීට්)'}>Beet (බීට්)</MenuItem>
+          <MenuItem value={'Carrot (කැරට්)'}>Carrot (කැරට්)</MenuItem>
+          <MenuItem value={'Pumpkin (වට්ටක්කා)'}>Pumpkin (වට්ටක්කා)</MenuItem>
+          <MenuItem value={'Cabbage (ගෝවා)'}>Cabbage (ගෝවා)</MenuItem>
+          <MenuItem value={'Brinjal (වම්බටු)'}>Brinjal (වම්බටු)</MenuItem>
+          <MenuItem value={'Beans (බෝංචි)'}>Beans (බෝංචි)</MenuItem>
+          <MenuItem value={'Tomato (තක්කාලි)'}>Tomato (තක්කාලි)</MenuItem>
+          <MenuItem value={'Chili (මිරිස්)'}>Chili (මිරිස්)</MenuItem>
+         
+            
+           {/*  {
+              this.state.veges.map((value)=>{
+                return <MenuItem value={value.crop}>{value.crop}</MenuItem>
+
               })
-            }
+            } */}
 
           </Select>
 
@@ -101,12 +131,16 @@ class Store extends Component {
             className={styles.select}
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={this.state.age}
-            onChange={this.handleChange}
+            value={this.state.eco}
+            onChange={this.handleChangeeco.bind(this)}
           >
-            <MenuItem value={'eco 1'}>eco 1</MenuItem>
-            <MenuItem value={'eco 2'}>eco 2</MenuItem>
+            <MenuItem value={'Meegoda'}>Meegoda</MenuItem>
+            <MenuItem value={'Dambulla'}>Dambulla</MenuItem>
           </Select>
+
+          <br/>
+
+          <Button style={{marginTop: 10}} variant="contained" color="green" onPress={() => {this.reset()}}>Reset Filters</Button>
         </div>
 
         <div className={styles.items}>
@@ -116,23 +150,27 @@ class Store extends Component {
               <Grid container justify="center" spacing={2}>
                 {this.state.veges.map((value) => (
                   <Grid key={value} item>
-                    {this.state.vege === value.vege || this.state.vege === '' ?
+                    {this.state.vege === value.crop || (this.state.vege === value.crop && this.state.eco === value.economicCenter) || this.state.vege === '' ?
                       <Paper style={{
-                        height: 530, backgroundColor: '#bef092',
+                        height: 530, backgroundColor: 'white',
                         width: 300
-                      }} > <img style={{ height: 280, width: 300, objectFit: 'cover' }} src={value.img}></img>
+                      }} > <img style={{ height: 280, width: 300, objectFit: 'cover' }} src={value.image}></img>
                         <div style={{ padding: 10 }}>
-                          <h4>{value.vege}</h4>
-                          <h5>{value.size}kg</h5>
-                          <h5>{value.seller}</h5>
-                          <h5>{value.eco_centre}</h5>
+                          <h4>{value.crop}</h4>
+                          <h5>{value.quantity}kg</h5>
+                          <h5>{value.name}</h5>
+                          <h5>{value.economicCenter}</h5>
                           <div style={{ display: 'flex' }}>
                             <Button variant="outlined" color="primary">
+
                               {t('details')}
                             </Button>
                             <Button onClick={() => this.handlenav(value.vege, value.size, value.img, value.seller, value.eco_centre)} variant="outlined" color="secondary">
                               {t('buy')}
                             </Button></div>
+
+                             
+
                         </div>
                       </Paper> : null}
                   </Grid>

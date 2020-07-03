@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from '../../stocks-list';
 import styles from './pool.module.css';
+import { Grid, Paper } from '@material-ui/core';
 
 let poolsize = 0
 let avgprice = 0
@@ -38,7 +39,8 @@ class Pool extends Component {
         }
     }
 
-    componentDidMount() {
+    async componentDidMount() {
+        try {
         axios.get('/requests.json')
         .then(response => {
             console.log(response.data)
@@ -88,8 +90,11 @@ class Pool extends Component {
         }).catch(err => {
             console.log(err)
         })
+    } catch(err) {
+        console.log(err)
+    }
 
-        let whole = this.state.requests
+        // let whole = this.state.requests
 /* 
         for(let req in whole) {
             this.setState({
@@ -111,11 +116,11 @@ class Pool extends Component {
                     return <div><h2>{req.vege}</h2><h2>{req.size}</h2><h2>{req.price}</h2></div>
                 })} */}
 
-              
+             
 
-                <div className={styles.tile}>
+                {/* <div className={styles.tile}>
                 <h2>Beet</h2>
-                <div style={{display:'flex'}}><h4>pool total need (kg) -  </h4><h3>{this.state.mainblock.Beet.poolsize / 2} kg</h3>
+                <div style={{display:'flex', textAlign: 'center'}}><h4>pool total need (kg) -  </h4><h3>{this.state.mainblock.Beet.poolsize / 2} kg</h3>
                 </div>
                 <br/>
                 <div style={{display:'flex'}}><h4>avg asking price (rs) -  </h4><h3>{this.state.mainblock.Beet.price / this.state.mainblock.Beet.count} rs</h3>
@@ -130,7 +135,71 @@ class Pool extends Component {
                 <div style={{display:'flex'}}><h4>avg asking price (rs) -  </h4><h3>{this.state.mainblock.Potato.price / this.state.mainblock.Potato.count} rs</h3>
                 </div>
                 </div>
+                 */}
+
+                <Grid container>
+            <Grid item xs={12}>
+              <Grid container justify="center" spacing={2}>
                 
+                  <Grid item>
+                    
+                      <Paper style={{
+                        height: 530, backgroundColor: 'white',
+                        width: 300,
+                        marginBottom: 10
+                      }} > <img style={{ height: 280, width: 300, objectFit: 'cover' }} src={require ('../../assets/Beet-Salad-001.jpg')}></img>
+                        <div style={{ padding: 10 }}>
+                          <h4>Beet</h4>
+                          <h5>total need <span style={{color: 'rgb(255, 94, 0)'}}>{this.state.mainblock.Beet.poolsize / 2} kg</span> </h5>
+                          <h5>average asking price Rs <span style={{color: 'rgb(255, 94, 0)'}}>{this.state.mainblock.Beet.price/ this.state.mainblock.Beet.count}</span></h5>
+                          {/* <h5>{value.economicCentre}</h5> */}
+                          {/* <div style={{ display: 'flex' }}> */}
+                            {/* <Button variant="outlined" color="primary"> */}
+                              {/* details */}
+{/* </Button> */}
+                            {/* <Button onClick={() => this.handlenav(value.vege, value.size, value.img, value.seller, value.eco_centre)} variant="outlined" color="secondary"> */}
+                              {/* buy */}
+{/* </Button> */}
+{/* </div> */}
+                        </div>
+                      </Paper> 
+                  </Grid>
+              
+              </Grid>
+            </Grid>
+
+
+            <Grid item xs={12}>
+              <Grid container justify="center" spacing={2}>
+                
+                  <Grid item>
+                    
+                      <Paper style={{
+                        height: 530, backgroundColor: 'white',
+                        width: 300, marginBottom: 10, elevation: 10
+                      }} > <img style={{ height: 280, width: 300, objectFit: 'cover' }} src={require ('../../assets/pos.jpg')}></img>
+                        <div style={{ padding: 10 }}>
+                          <h4>Potato</h4>
+                          <h5>total need <span style={{color: 'rgb(255, 94, 0)'}}>{this.state.mainblock.Potato.poolsize / 2} kg</span> </h5>
+                          <h5>average asking price Rs <span style={{color: 'rgb(255, 94, 0)'}}>{this.state.mainblock.Potato.price/ this.state.mainblock.Potato.count}</span></h5>
+                          {/* <h5>{value.economicCentre}</h5> */}
+                          {/* <div style={{ display: 'flex' }}> */}
+                            {/* <Button variant="outlined" color="primary"> */}
+                              {/* details */}
+{/* </Button> */}
+                            {/* <Button onClick={() => this.handlenav(value.vege, value.size, value.img, value.seller, value.eco_centre)} variant="outlined" color="secondary"> */}
+                              {/* buy */}
+{/* </Button> */}
+{/* </div> */}
+                        </div>
+                      </Paper> 
+                  </Grid>
+              
+              </Grid>
+            </Grid>
+
+
+          </Grid>
 
                 {/* <Grid container>
       <Grid item xs={12}>

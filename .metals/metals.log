@@ -4,3 +4,15 @@ INFO  time: initialize in 3.94s
 WARN  no build tool detected in workspace 'c:\Users\Chulaka\R\group-project\test'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
 INFO  time: initialize in 4.81s
 WARN  no build tool detected in workspace 'c:\Users\Chulaka\R\group-project\test'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+INFO  shutting down Metals
+INFO  time: initialize in 2.95s
+WARN  no build tool detected in workspace 'c:\Users\Chulaka\R\group-project\test'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+INFO  shutting down Metals
+INFO  time: initialize in 2.31s
+WARN  no build tool detected in workspace 'c:\Users\Chulaka\R\group-project\test'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+INFO  shutting down Metals
+INFO  time: initialize in 3.89s
+WARN  no build tool detected in workspace 'c:\Users\Chulaka\R\group-project\test'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+INFO  shutting down Metals
+INFO  time: initialize in 5.65s
+WARN  no build tool detected in workspace 'c:\Users\Chulaka\R\group-project\test'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
