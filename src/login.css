@@ -1,0 +1,11 @@
+h2 {
+    color:purple;
+
+    
+}
+
+.text{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
