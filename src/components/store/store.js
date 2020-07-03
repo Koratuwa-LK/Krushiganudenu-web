@@ -98,13 +98,6 @@ class Store extends Component {
             onChange={this.handleChange.bind(this)}
           >
 
-            {/* <MenuItem value={'Beet'}>Beet</MenuItem>
-            <MenuItem value={'Cabbage'}>Cabbage</MenuItem>
-            <MenuItem value={'Potato'}>Potato</MenuItem>
-            <MenuItem value={'Lettuce'}>Lettuce</MenuItem> */}
-            {
-              this.state.veges.map((value) => {
-                return <MenuItem value={value.vege}>{value.vege}</MenuItem>
 
           <MenuItem value={'Potato (අල)'}>Potato (අල)</MenuItem>
           <MenuItem value={'Beet (බීට්)'}>Beet (බීට්)</MenuItem>
@@ -117,12 +110,7 @@ class Store extends Component {
           <MenuItem value={'Chili (මිරිස්)'}>Chili (මිරිස්)</MenuItem>
          
             
-           {/*  {
-              this.state.veges.map((value)=>{
-                return <MenuItem value={value.crop}>{value.crop}</MenuItem>
-
-              })
-            } */}
+           
 
           </Select>
 
