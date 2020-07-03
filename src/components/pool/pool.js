@@ -151,7 +151,7 @@ class Pool extends Component {
                         <div style={{ padding: 10 }}>
                           <h4>Beet (බීට්)</h4>
                           <h5>total need <span style={{color: 'rgb(255, 94, 0)'}}>{this.state.mainblock.Beet.poolsize / 2} kg</span> </h5>
-                          <h5>average asking price Rs <span style={{color: 'rgb(255, 94, 0)'}}>{this.state.mainblock.Beet.price/ this.state.mainblock.Beet.count}</span></h5>
+                          <h5>average asking price Rs <span style={{color: 'rgb(255, 94, 0)'}}>{(this.state.mainblock.Beet.price.toFixed(2)/ this.state.mainblock.Beet.count).toFixed(2)}</span></h5>
                           {/* <h5>{value.economicCentre}</h5> */}
                           {/* <div style={{ display: 'flex' }}> */}
                             {/* <Button variant="outlined" color="primary"> */}
@@ -181,7 +181,7 @@ class Pool extends Component {
                         <div style={{ padding: 10 }}>
                           <h4>Potato (අල)</h4>
                           <h5>total need <span style={{color: 'rgb(255, 94, 0)'}}>{this.state.mainblock.Potato.poolsize / 2} kg</span> </h5>
-                          <h5>average asking price Rs <span style={{color: 'rgb(255, 94, 0)'}}>{this.state.mainblock.Potato.price/ this.state.mainblock.Potato.count}</span></h5>
+                          <h5>average asking price Rs <span style={{color: 'rgb(255, 94, 0)'}}>{(this.state.mainblock.Potato.price.toFixed(2)/ this.state.mainblock.Potato.count).toFixed(2)}</span></h5>
                           {/* <h5>{value.economicCentre}</h5> */}
                           {/* <div style={{ display: 'flex' }}> */}
                             {/* <Button variant="outlined" color="primary"> */}
