@@ -32,11 +32,7 @@ class Store extends Component {
     console.log(this.state.vege)
   }
 
-<<<<<<< HEAD
   handlenav(vege1, size1, img1, seller1, eco_centre1, FarmerId, Farmer, ) {
-=======
-  handlenav(vege1, size1, img1, seller1, eco_centre1) {
->>>>>>> 3ac7a3279c6e4de933cb66cbf3f0581f7acf4efe
 
     this.props.history.push({
       pathname: '/checkout',
