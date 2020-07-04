@@ -32,7 +32,7 @@ class Store extends Component {
     console.log(this.state.vege)
   }
 
-  handlenav(vege1, size1, img1, seller1, eco_centre1) {
+  handlenav(vege1, size1, img1, seller1, eco_centre1, FarmerId, Farmer, ) {
 
     this.props.history.push({
       pathname: '/checkout',
@@ -40,8 +40,10 @@ class Store extends Component {
         vege: vege1,
         size: size1,
         img: img1,
-        seller: seller1,
-        eco_centre: eco_centre1
+        eco_centre: eco_centre1,
+        Farmer: seller1,
+        FarmerId: FarmerId
+
       }
 
     })
@@ -92,6 +94,7 @@ class Store extends Component {
             value={this.state.vege}
             onChange={this.handleChange.bind(this)}
           >
+          <MenuItem value={'no filter'}>No filter (සියල්ල)</MenuItem>
           <MenuItem value={'Potato (අල)'}>Potato (අල)</MenuItem>
           <MenuItem value={'Beet (බීට්)'}>Beet (බීට්)</MenuItem>
           <MenuItem value={'Carrot (කැරට්)'}>Carrot (කැරට්)</MenuItem>
@@ -135,7 +138,7 @@ class Store extends Component {
               <Grid container justify="center" spacing={2}>
                 {this.state.veges.map((value) => (
                   <Grid key={value} item>
-                    {this.state.vege.substring(0,5) === value.crop.substring(0,5) || (this.state.vege.substring(0,5) === value.crop.substring(0,5) && this.state.eco === value.economicCenter) || this.state.vege === '' ?
+                    {this.state.vege === 'no filter' || this.state.vege.substring(0,5) === value.crop.substring(0,5) || (this.state.vege.substring(0,5) === value.crop.substring(0,5) && this.state.eco === value.economicCenter) || this.state.vege === '' ?
                       <Paper style={{
                         height: 530, backgroundColor: 'white',
                         width: 300
@@ -149,7 +152,7 @@ class Store extends Component {
                             <Button variant="outlined" color="primary">
                               details
 </Button>
-                            <Button onClick={() => this.handlenav(value.crop, value.quantity, value.image, value.name, value.economicCentre)} variant="outlined" color="secondary">
+                            <Button onClick={() => this.handlenav(value.crop, value.quantity, value.image, value.name, value.economicCenter,  value.uid)} variant="outlined" color="secondary">
                               buy
 </Button></div>
                         </div>

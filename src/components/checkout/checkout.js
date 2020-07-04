@@ -11,7 +11,15 @@ class Checkout extends Component {
         size: 10,
         buyer: '',
         location: '',
+        price: 0.00,
+        phone: ''
 
+    }
+
+    componentDidMount () {
+        this.setState({
+            price: this.props.location.state.price
+        })
     }
 
     handleChange = (event, freshval) => {
@@ -32,6 +40,24 @@ class Checkout extends Component {
         })
     }
 
+    handleChangeprice(event) {
+        this.setState({
+            price: event.target.value
+        })
+    }
+
+    handleChangeprice(event) {
+        this.setState({
+            price: event.target.value
+        })
+    }
+
+    handleChangephone(event) {
+        this.setState({
+            phone: event.target.value
+        })
+    }
+
     valuetext(value) {
         return `${value}°C`;
     }
@@ -47,7 +73,19 @@ class Checkout extends Component {
             moment().format('MMMM Do YYYY, h:mm:ss a')
         )
 
-        axios.post('/exchanges.json', { seller: this.props.location.state.seller, buyer: this.state.buyer, crop: this.props.location.state.vege, size: this.props.location.state.size, buyer_location: this.state.location, eco_centre: this.props.location.state.eco_centre, checkout_time: moment().format('MMMM Do YYYY, h:mm:ss a') })
+        axios.post('/orders.json', {  
+            Buyer: this.state.buyer, 
+            Crop: this.props.location.state.vege, 
+            economicCenter: this.props.location.state.eco_centre, 
+            OrderDate: moment().format('MMMM Do YYYY'),
+            Accept: false,
+            DesiredPrice: this.state.price,
+            Farmer: this.props.location.state.Farmer,
+            Quantity: this.state.size,
+            Reject: false,
+            FarmerId: this.props.location.state.FarmerId,
+            Mobile: this.state.phone
+         })
             .then(response => {
                 console.log(response.data)
             }).catch(err => {
@@ -90,7 +128,10 @@ class Checkout extends Component {
                         <div className={styles.textfield}>
                             <TextField required label="Name" defaultValue="name" onChange={this.handleChangebuyer.bind(this)} value={this.state.buyer} />
                             <br />
-                            <TextField required label="Location" defaultValue="location" onChange={this.handleChangelocation.bind(this)} value={this.state.location} />
+                            <TextField required label="Phone" defaultValue="Phone" onChange={this.handleChangephone.bind(this)} value={this.state.phone} />
+                            <br />
+                            <TextField required label="Price you ask" defaultValue="Price you ask" onChange={this.handleChangeprice.bind(this)} value={this.state.price} />
+                            
                         </div>
 
                         <Button variant="contained" onClick={() => { this.checkout() }} color="primary">
