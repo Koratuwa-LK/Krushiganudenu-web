@@ -32,7 +32,11 @@ class Store extends Component {
     console.log(this.state.vege)
   }
 
+<<<<<<< HEAD
   handlenav(vege1, size1, img1, seller1, eco_centre1, FarmerId, Farmer, ) {
+=======
+  handlenav(vege1, size1, img1, seller1, eco_centre1) {
+>>>>>>> 3ac7a3279c6e4de933cb66cbf3f0581f7acf4efe
 
     this.props.history.push({
       pathname: '/checkout',
@@ -50,8 +54,12 @@ class Store extends Component {
   }
 
   componentDidMount() {
+<<<<<<< HEAD
     
     instance.get('/Stocks.json')
+=======
+    instance.get('/stocks.json')
+>>>>>>> 3ac7a3279c6e4de933cb66cbf3f0581f7acf4efe
       .then(response => {
         for(let key in response.data){
           console.log(response.data[key])
@@ -79,6 +87,12 @@ class Store extends Component {
       eco: ''
     })
   }
+<<<<<<< HEAD
+=======
+
+  render() {
+    const { t } = this.props;
+>>>>>>> 3ac7a3279c6e4de933cb66cbf3f0581f7acf4efe
 
   render() {
     return (
@@ -94,7 +108,19 @@ class Store extends Component {
             value={this.state.vege}
             onChange={this.handleChange.bind(this)}
           >
+<<<<<<< HEAD
           <MenuItem value={'no filter'}>No filter (සියල්ල)</MenuItem>
+=======
+
+            {/* <MenuItem value={'Beet'}>Beet</MenuItem>
+            <MenuItem value={'Cabbage'}>Cabbage</MenuItem>
+            <MenuItem value={'Potato'}>Potato</MenuItem>
+            <MenuItem value={'Lettuce'}>Lettuce</MenuItem> */}
+            {
+              this.state.veges.map((value) => {
+                return <MenuItem value={value.vege}>{value.vege}</MenuItem>
+
+>>>>>>> 3ac7a3279c6e4de933cb66cbf3f0581f7acf4efe
           <MenuItem value={'Potato (අල)'}>Potato (අල)</MenuItem>
           <MenuItem value={'Beet (බීට්)'}>Beet (බීට්)</MenuItem>
           <MenuItem value={'Carrot (කැරට්)'}>Carrot (කැරට්)</MenuItem>
@@ -109,6 +135,10 @@ class Store extends Component {
            {/*  {
               this.state.veges.map((value)=>{
                 return <MenuItem value={value.crop}>{value.crop}</MenuItem>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3ac7a3279c6e4de933cb66cbf3f0581f7acf4efe
               })
             } */}
 
@@ -128,7 +158,11 @@ class Store extends Component {
 
           <br/>
 
+<<<<<<< HEAD
           <Button style={{marginTop: 10}} variant="contained" color="green" onPress={this.reset}>Reset Filters</Button>
+=======
+          <Button style={{marginTop: 10}} variant="contained" color="green" onPress={() => {this.reset()}}>Reset Filters</Button>
+>>>>>>> 3ac7a3279c6e4de933cb66cbf3f0581f7acf4efe
         </div>
 
         <div className={styles.items}>
@@ -138,7 +172,11 @@ class Store extends Component {
               <Grid container justify="center" spacing={2}>
                 {this.state.veges.map((value) => (
                   <Grid key={value} item>
+<<<<<<< HEAD
                     {this.state.vege === 'no filter' || this.state.vege.substring(0,5) === value.crop.substring(0,5) || (this.state.vege.substring(0,5) === value.crop.substring(0,5) && this.state.eco === value.economicCenter) || this.state.vege === '' ?
+=======
+                    {this.state.vege === value.crop || (this.state.vege === value.crop && this.state.eco === value.economicCenter) || this.state.vege === '' ?
+>>>>>>> 3ac7a3279c6e4de933cb66cbf3f0581f7acf4efe
                       <Paper style={{
                         height: 530, backgroundColor: 'white',
                         width: 300
@@ -150,11 +188,23 @@ class Store extends Component {
                           <h5>{value.economicCenter}</h5>
                           <div style={{ display: 'flex' }}>
                             <Button variant="outlined" color="primary">
+<<<<<<< HEAD
                               details
 </Button>
                             <Button onClick={() => this.handlenav(value.crop, value.quantity, value.image, value.name, value.economicCenter,  value.uid)} variant="outlined" color="secondary">
                               buy
 </Button></div>
+=======
+
+                              {t('details')}
+                            </Button>
+                            <Button onClick={() => this.handlenav(value.vege, value.size, value.img, value.seller, value.eco_centre)} variant="outlined" color="secondary">
+                              {t('buy')}
+                            </Button></div>
+
+                             
+
+>>>>>>> 3ac7a3279c6e4de933cb66cbf3f0581f7acf4efe
                         </div>
                       </Paper> : null}
                   </Grid>
