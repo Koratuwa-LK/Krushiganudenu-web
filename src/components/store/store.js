@@ -98,6 +98,7 @@ class Store extends Component {
             value={this.state.vege}
             onChange={this.handleChange.bind(this)}
           >
+
           <MenuItem value={'no filter'}>No filter (සියල්ල)</MenuItem>
           <MenuItem value={'Potato (අල)'}>Potato (අල)</MenuItem>
           <MenuItem value={'Beet (බීට්)'}>Beet (බීට්)</MenuItem>
@@ -109,13 +110,6 @@ class Store extends Component {
           <MenuItem value={'Tomato (තක්කාලි)'}>Tomato (තක්කාලි)</MenuItem>
           <MenuItem value={'Chili (මිරිස්)'}>Chili (මිරිස්)</MenuItem>
          
-            
-           {/*  {
-              this.state.veges.map((value)=>{
-                return <MenuItem value={value.crop}>{value.crop}</MenuItem>
-              })
-            } */}
-
           </Select>
 
           <InputLabel className={styles.label} >Eco Centre</InputLabel>
