@@ -9,7 +9,7 @@ class Pool extends Component {
 
     state = {
         requests: [],
-        poolsize: 0,
+        poolsize: '',
         price: 0,
         count: 0,
         mainblock : {
@@ -69,7 +69,7 @@ class Pool extends Component {
                 crop = obj[key].vege
 
                 this.setState(prevState => {
-                    let mainblock = Object.assign({}, prevState.mainblock);
+                    let mainblock = Object.assign({}, prevState.mainblock)
                     let prevsize = mainblock[crop].poolsize
                     let prevprice = mainblock[crop].price
                     let prevcount = mainblock[crop].count
@@ -149,9 +149,9 @@ class Pool extends Component {
                         marginBottom: 10
                       }} > <img style={{ height: 280, width: 300, objectFit: 'cover' }} src={require ('../../assets/Beet-Salad-001.jpg')}></img>
                         <div style={{ padding: 10 }}>
-                          <h4>Beet</h4>
+                          <h4>Beet (බීට්)</h4>
                           <h5>total need <span style={{color: 'rgb(255, 94, 0)'}}>{this.state.mainblock.Beet.poolsize / 2} kg</span> </h5>
-                          <h5>average asking price Rs <span style={{color: 'rgb(255, 94, 0)'}}>{this.state.mainblock.Beet.price/ this.state.mainblock.Beet.count}</span></h5>
+                          <h5>average asking price Rs <span style={{color: 'rgb(255, 94, 0)'}}>{(this.state.mainblock.Beet.price.toFixed(2)/ this.state.mainblock.Beet.count).toFixed(2)}</span></h5>
                           {/* <h5>{value.economicCentre}</h5> */}
                           {/* <div style={{ display: 'flex' }}> */}
                             {/* <Button variant="outlined" color="primary"> */}
@@ -179,9 +179,9 @@ class Pool extends Component {
                         width: 300, marginBottom: 10, elevation: 10
                       }} > <img style={{ height: 280, width: 300, objectFit: 'cover' }} src={require ('../../assets/pos.jpg')}></img>
                         <div style={{ padding: 10 }}>
-                          <h4>Potato</h4>
+                          <h4>Potato (අල)</h4>
                           <h5>total need <span style={{color: 'rgb(255, 94, 0)'}}>{this.state.mainblock.Potato.poolsize / 2} kg</span> </h5>
-                          <h5>average asking price Rs <span style={{color: 'rgb(255, 94, 0)'}}>{this.state.mainblock.Potato.price/ this.state.mainblock.Potato.count}</span></h5>
+                          <h5>average asking price Rs <span style={{color: 'rgb(255, 94, 0)'}}>{(this.state.mainblock.Potato.price.toFixed(2)/ this.state.mainblock.Potato.count).toFixed(2)}</span></h5>
                           {/* <h5>{value.economicCentre}</h5> */}
                           {/* <div style={{ display: 'flex' }}> */}
                             {/* <Button variant="outlined" color="primary"> */}

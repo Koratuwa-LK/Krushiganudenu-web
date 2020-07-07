@@ -111,15 +111,15 @@ class Request extends Component {
           value={this.state.vege}
           onChange={this.handleChangevege.bind(this)}
         >
-          <MenuItem value={'Potato (අල)'}>Potato (අල)</MenuItem>
-          <MenuItem value={'Beet (බීට්)'}>Beet (බීට්)</MenuItem>
-          <MenuItem value={'Carrot (කැරට්)'}>Carrot (කැරට්)</MenuItem>
-          <MenuItem value={'Pumpkin (වට්ටක්කා)'}>Pumpkin (වට්ටක්කා)</MenuItem>
-          <MenuItem value={'Cabbage (ගෝවා)'}>Cabbage (ගෝවා)</MenuItem>
-          <MenuItem value={'Brinjal (වම්බටු)'}>Brinjal (වම්බටු)</MenuItem>
-          <MenuItem value={'Beans (බෝංචි)'}>Beans (බෝංචි)</MenuItem>
-          <MenuItem value={'Tomato (තක්කාලි)'}>Tomato (තක්කාලි)</MenuItem>
-          <MenuItem value={'Chili (මිරිස්)'}>Chili (මිරිස්)</MenuItem>
+          <MenuItem value={'Potato'}>Potato (අල)</MenuItem>
+          <MenuItem value={'Beet'}>Beet (බීට්)</MenuItem>
+          <MenuItem value={'Carrot'}>Carrot (කැරට්)</MenuItem>
+          <MenuItem value={'Pumpkin'}>Pumpkin (වට්ටක්කා)</MenuItem>
+          <MenuItem value={'Cabbage'}>Cabbage (ගෝවා)</MenuItem>
+          <MenuItem value={'Brinjal'}>Brinjal (වම්බටු)</MenuItem>
+          <MenuItem value={'Beans'}>Beans (බෝංචි)</MenuItem>
+          <MenuItem value={'Tomato'}>Tomato (තක්කාලි)</MenuItem>
+          <MenuItem value={'Chili'}>Chili (මිරිස්)</MenuItem>
           
         </Select>
 

@@ -4,14 +4,12 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Grid from '@material-ui/core/Grid';
-import { withTranslation } from 'react-i18next';
+
 import Paper from '@material-ui/core/Paper';
 import { Button } from '@material-ui/core';
 import instance from '../../stocks-list';
 
 class Store extends Component {
-
-
 
   state = {
     vege: '',
@@ -19,8 +17,6 @@ class Store extends Component {
     veges: [],
     eco: ''
   }
-
-
 
   handleChange(event) {
     this.setState({
@@ -36,7 +32,7 @@ class Store extends Component {
     console.log(this.state.vege)
   }
 
-  handlenav(vege1, size1, img1, seller1, eco_centre1) {
+  handlenav(vege1, size1, img1, seller1, eco_centre1, FarmerId, Farmer, ) {
 
     this.props.history.push({
       pathname: '/checkout',
@@ -44,33 +40,40 @@ class Store extends Component {
         vege: vege1,
         size: size1,
         img: img1,
-        seller: seller1,
-        eco_centre: eco_centre1
+        eco_centre: eco_centre1,
+        Farmer: seller1,
+        FarmerId: FarmerId
+
       }
 
     })
   }
 
   componentDidMount() {
-    instance.get('/stocks.json')
+
+    
+    instance.get('/Stocks.json')
+
+    
+
       .then(response => {
-        for (let key in response.data) {
+        for(let key in response.data){
           console.log(response.data[key])
-
-          const tempStock = [];
-          for (let key in response.data) {
-            tempStock.unshift(
-              {
-                ...response.data[key]
-              }
-            )
+          
+          const  tempStock = [];
+          for(let key in response.data){
+             tempStock.unshift(
+               {
+                 ...response.data[key]
+               }
+             )
           }
-          this.setState({ veges: tempStock })
+          this.setState({veges:tempStock})
         }
-
+        
       })
 
-    console.log(this.state)
+      console.log(this.state)
 
   }
 
@@ -82,14 +85,12 @@ class Store extends Component {
   }
 
   render() {
-    const { t } = this.props;
-
     return (
       <div className={styles.main}>
-        <h1>{t('krushiganudenu')} {t('store')}</h1>
+        <h1>KRUSHIGANUDENU STORE</h1>
 
         <div className={styles.filters}>
-          <InputLabel className={styles.label} id="demo-simple-select-label">{t('vegetabletype')}</InputLabel>
+          <InputLabel className={styles.label} id="demo-simple-select-label">Vegetable</InputLabel>
           <Select
             className={styles.select}
             labelId="demo-simple-select-label"
@@ -98,7 +99,7 @@ class Store extends Component {
             onChange={this.handleChange.bind(this)}
           >
 
-
+          <MenuItem value={'no filter'}>No filter (සියල්ල)</MenuItem>
           <MenuItem value={'Potato (අල)'}>Potato (අල)</MenuItem>
           <MenuItem value={'Beet (බීට්)'}>Beet (බීට්)</MenuItem>
           <MenuItem value={'Carrot (කැරට්)'}>Carrot (කැරට්)</MenuItem>
@@ -109,12 +110,9 @@ class Store extends Component {
           <MenuItem value={'Tomato (තක්කාලි)'}>Tomato (තක්කාලි)</MenuItem>
           <MenuItem value={'Chili (මිරිස්)'}>Chili (මිරිස්)</MenuItem>
          
-            
-           
-
           </Select>
 
-          <InputLabel className={styles.label} >{t('ecocenter')}</InputLabel>
+          <InputLabel className={styles.label} >Eco Centre</InputLabel>
           <Select
             className={styles.select}
             labelId="demo-simple-select-label"
@@ -128,7 +126,7 @@ class Store extends Component {
 
           <br/>
 
-          <Button style={{marginTop: 10}} variant="contained" color="green" onPress={() => {this.reset()}}>Reset Filters</Button>
+          <Button style={{marginTop: 10}} variant="contained" color="green" onPress={this.reset}>Reset Filters</Button>
         </div>
 
         <div className={styles.items}>
@@ -138,7 +136,7 @@ class Store extends Component {
               <Grid container justify="center" spacing={2}>
                 {this.state.veges.map((value) => (
                   <Grid key={value} item>
-                    {this.state.vege === value.crop || (this.state.vege === value.crop && this.state.eco === value.economicCenter) || this.state.vege === '' ?
+                    {this.state.vege === 'no filter' || this.state.vege.substring(0,5) === value.crop.substring(0,5) || (this.state.vege.substring(0,5) === value.crop.substring(0,5) && this.state.eco === value.economicCenter) || this.state.vege === '' ?
                       <Paper style={{
                         height: 530, backgroundColor: 'white',
                         width: 300
@@ -150,15 +148,11 @@ class Store extends Component {
                           <h5>{value.economicCenter}</h5>
                           <div style={{ display: 'flex' }}>
                             <Button variant="outlined" color="primary">
-
-                              {t('details')}
-                            </Button>
-                            <Button onClick={() => this.handlenav(value.vege, value.size, value.img, value.seller, value.eco_centre)} variant="outlined" color="secondary">
-                              {t('buy')}
-                            </Button></div>
-
-                             
-
+                              details
+</Button>
+                            <Button onClick={() => this.handlenav(value.crop, value.quantity, value.image, value.name, value.economicCenter,  value.uid)} variant="outlined" color="secondary">
+                              buy
+</Button></div>
                         </div>
                       </Paper> : null}
                   </Grid>
@@ -173,4 +167,4 @@ class Store extends Component {
   }
 }
 
-export default withTranslation()(Store);
+export default Store;
