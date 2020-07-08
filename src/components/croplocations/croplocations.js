@@ -61,22 +61,29 @@ class Croplocations extends Component {
           zoom={8}
           style={{height:600, width: 'auto' ,borderRadius: 10, padding: 40}}
         // className={styles.googleboxinner}
-          initialCenter={{ lat: this.state.lat, lng: this.state.lng}}
+          initialCenter={{ lat: 7.4583349, lng: 80.5936853}}
         >
        {/* {this.state.croplist.map(crop => {{ crop.vege == 'potato' ? <Marker title={crop.title} style={{color: 'green'}} icon={{ url: 'https://i.imgur.com/QkpL7jq.png' }} position={{ lat: crop.lat, lng: crop.lng}} />  :  <Marker title={crop.title} style={{color: 'green'}} icon={ require ('../../assets/pointers/potato.png') } position={{ lat: crop.lat, lng: crop.lng}} /> } */}
 {this.state.croplistfinl.map(crop => { if(crop.crop == 'Potato') {
     return <Marker title={crop.name + '-' + crop.crop + '-' + crop.size + 'kg'} style={{color: 'green'}} icon={require ( '../../assets/pointers/potato.png') } position={{ lat: crop.lat, lng: crop.lng}} />
 }if(crop.crop == 'Beet'){
     return <Marker title={crop.name + '-' + crop.crop + '-' + crop.size + 'kg'} style={{color: 'green'}} icon={ require ('../../assets/pointers/beetpointers.png') } position={{ lat: crop.lat, lng: crop.lng}} />
-}if(crop.vege == 'Brinjal'){
+}if(crop.crop == 'Brinjal'){
     return <Marker title={crop.name + '-' + crop.crop + '-' + crop.size + 'kg'} style={{color: 'green'}} icon={ require ('../../assets/pointers/brinjl.png') } position={{ lat: crop.lat, lng: crop.lng}} />
-}if(crop.vege == 'Carrot'){
+}if(crop.crop == 'Carrot'){
     return <Marker title={crop.name + '-' + crop.crop + '-' + crop.size + 'kg'} style={{color: 'green'}} icon={ require ('../../assets/pointers/crot.png') } position={{ lat: crop.lat, lng: crop.lng}} />
-}if(crop.vege == 'Tomato'){
-    return <Marker title={crop.name + '-' + crop.crop + '-' + crop.size + 'kg'} style={{color: 'green'}} icon={ require ('../../assets/pointers/potato.png') } position={{ lat: crop.lat, lng: crop.lng}} />
-}if(crop.vege == 'Beans'){
-    return <Marker title={crop.name + '-' + crop.crop + '-' + crop.size + 'kg'} style={{color: 'green'}} icon={ require ('../../assets/pointers/potato.png') } position={{ lat: crop.lat, lng: crop.lng}} />
-}}
+}if(crop.crop == 'Tomato'){
+    return <Marker title={crop.name + '-' + crop.crop + '-' + crop.size + 'kg'} style={{color: 'green'}} icon={ require ('../../assets/pointers/tmto.png') } position={{ lat: crop.lat, lng: crop.lng}} />
+}if(crop.crop == 'Beans'){
+    return <Marker title={crop.name + '-' + crop.crop + '-' + crop.size + 'kg'} style={{color: 'green'}} icon={ require ('../../assets/pointers/bns.png') } position={{ lat: crop.lat, lng: crop.lng}} />
+}if(crop.crop == 'Pumpkin'){
+    return <Marker title={crop.name + '-' + crop.crop + '-' + crop.size + 'kg'} style={{color: 'green'}} icon={ require ('../../assets/pointers/pmkin.png') } position={{ lat: crop.lat, lng: crop.lng}} />
+}if(crop.crop == 'Cabbage'){
+    return <Marker title={crop.name + '-' + crop.crop + '-' + crop.size + 'kg'} style={{color: 'green'}} icon={ require ('../../assets/pointers/cabbage.png') } position={{ lat: crop.lat, lng: crop.lng}} />
+}if(crop.crop == 'Chili'){
+    return <Marker title={crop.name + '-' + crop.crop + '-' + crop.size + 'kg'} style={{color: 'green'}} icon={ require ('../../assets/pointers/chili.png') } position={{ lat: crop.lat, lng: crop.lng}} />
+}
+}
         
         )} 
         
