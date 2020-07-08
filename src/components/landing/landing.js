@@ -40,8 +40,48 @@ function Landing() {
         <img className={styles.imgresponseimg} src="https://images.unsplash.com/photo-1503762687835-129cc7a277e5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1576&q=80" ></img>
         </div>
         <div className={styles.textresponse}>
-        <h2 style={{color: 'white'}}>Please use our mobile app</h2>
-        <h2><a href="">Get it</a></h2>
+        {/* <h2 style={{color: 'white'}}>Please use our mobile app</h2>
+        <h2><a href="">Get it</a></h2> */}
+        <h2 style={{color: '#55e05f'}}>KrushiGanudenu</h2>
+        {/* <h2><a href="">Get it</a></h2> */}
+
+        <div className={styles.btnresponse}>
+                    <h4>
+                        <Link to="/login">
+                            <a>SIGN IN</a>
+                        </Link>
+                    </h4>
+
+                </div>
+
+                <div className={styles.btnresponse}>
+                    <h4>
+                        <Link to="/store">
+                            <a>MARKETPLACE</a>
+                        </Link>
+                    </h4>
+
+                </div>
+
+                
+                <div className={styles.btnresponse}>
+                    <h4>
+                        <Link to="/request">
+                            <a>STOCK REQUEST</a>
+                        </Link>
+                    </h4>
+
+                </div>
+
+                
+                <div className={styles.btnresponse}>
+                    <h4>
+                        <Link to="/croplocations">
+                            <a>GROWERS IN THE ISLAND</a>
+                        </Link>
+                    </h4>
+
+                </div>
         </div>
         </div>
 
