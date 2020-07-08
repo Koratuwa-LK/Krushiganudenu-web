@@ -93,7 +93,12 @@ function Landing() {
                     </h4>
 
                 </div>
+
+                
             }
+
+
+            
 
 
             <div className={styles.btn2}>
@@ -101,6 +106,8 @@ function Landing() {
                 <h4><a href="/request">{t('stockrequest')}</a></h4></div>
 
         </div>
+
+        
         </div>
     )
 }
