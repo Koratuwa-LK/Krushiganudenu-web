@@ -59,6 +59,15 @@ body {
     margin-top: 10px
 }
 
+.legen {
+    position: relative;
+    margin-top: 282px;
+    height: 100px;
+    text-align: center;
+    background-color: white
+
+}
+
 @media only screen and (max-width: 450px) {
     .box {
         width: 80%;
