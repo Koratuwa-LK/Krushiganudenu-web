@@ -137,6 +137,14 @@ function Landing() {
                 
             }
 
+            <div className={styles.btn4}>
+            <h4>
+                        <Link to="/croplocations">
+                            <a>GROWERS IN THE ISLAND</a>
+                        </Link>
+                    </h4>
+            </div>
+
 
             
 
