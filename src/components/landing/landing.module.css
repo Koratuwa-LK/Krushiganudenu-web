@@ -55,6 +55,7 @@
 .btn2 h4 a {
     left: 40%;
     color: white;
+    line-height: 60px
 }
 nav {
     position: fixed;
@@ -107,6 +108,22 @@ color: #3F3F8F
     font-family: 'Roboto', sans-serif;
 }
 
+.btn4 {
+    height: 60px;
+    width: 218px;
+    /* padding: 20px; */
+    top: 65%;
+    left: 60%;
+    position: absolute;
+    background-color:  #3F3F8F;
+    text-align: center;
+    border-radius: 20px;
+    display: flex;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    justify-content: center
+}
+
 a {
     text-decoration: none;
     color: #3F3F8F
@@ -114,12 +131,44 @@ a {
 
 .btn h2 {
     left: 40%;
+    top: 10px;
+    color: white;
+}
+
+.btn4 h2 {
+    left: 40%;
     color: white;
 }
 
 .btn h4 a {
     left: 40%;
+    top: 10px;
     color: white;
+    line-height: 60px
+}
+
+.btn4 h4 a {
+    left: 40%;
+    top: 10px;
+    color: white;
+    line-height: 60px
+}
+
+.btnresponse {
+    height: 60px;
+    width: 145px;
+    padding: 10px;
+    /* top: 45%; */
+    left: 28%;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    position: relative;
+    background-color:  #3F3F8F;
+    text-align: center;
+    border-radius: 20px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+
 }
 
 .textresponse {
@@ -185,7 +234,9 @@ a {
         width: 100%;
         color: white;
         bottom: 60%;
-        height: 100%
+        height: 100%;
+        text-align: center;
+        align-items: center
     }
     
     .textresponse, h2 {

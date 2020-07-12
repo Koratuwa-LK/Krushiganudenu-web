@@ -106,7 +106,7 @@ class Pool extends Component {
     render () {
         return (
             <div>
-                <h1>POOL</h1>
+                <h1>REQUESTS</h1>
 
                 {poolsize != 0 ? <h2>{poolsize}</h2> : null}
 
