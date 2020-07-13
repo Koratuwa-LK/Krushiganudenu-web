@@ -4,10 +4,11 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Grid from '@material-ui/core/Grid';
-
+import Modal from '@material-ui/core/Modal';
 import Paper from '@material-ui/core/Paper';
 import { Button } from '@material-ui/core';
 import instance from '../../stocks-list';
+import FarmerReview from '../reviewModule/farmerReview';
 
 class Store extends Component {
 
@@ -15,8 +16,22 @@ class Store extends Component {
     vege: '',
 
     veges: [],
-    eco: ''
+    eco: '',
+    open:false
   }
+
+   handleOpen = () => {
+    this.setState({
+      ...this.state,open:true
+    })
+  };
+
+   handleClose = () => {
+    this.setState({
+      ...this.state,open:false
+    })
+  };
+
 
   handleChange(event) {
     this.setState({
@@ -32,7 +47,7 @@ class Store extends Component {
     console.log(this.state.vege)
   }
 
-  handlenav(vege1, size1, img1, seller1, eco_centre1, FarmerId, Farmer, ) {
+  handlenav(vege1, size1, img1, seller1, eco_centre1, FarmerId, Farmer,) {
 
     this.props.history.push({
       pathname: '/checkout',
@@ -49,35 +64,41 @@ class Store extends Component {
     })
   }
 
+  goToFarmerReview(e) {
+    console.log(e)
+    this.handleOpen();
+    
+  }
+
   componentDidMount() {
 
-    
+
     instance.get('/Stocks.json')
 
-    
+
 
       .then(response => {
-        for(let key in response.data){
+        for (let key in response.data) {
           console.log(response.data[key])
-          
-          const  tempStock = [];
-          for(let key in response.data){
-             tempStock.unshift(
-               {
-                 ...response.data[key]
-               }
-             )
+
+          const tempStock = [];
+          for (let key in response.data) {
+            tempStock.unshift(
+              {
+                ...response.data[key]
+              }
+            )
           }
-          this.setState({veges:tempStock})
+          this.setState({ veges: tempStock })
         }
-        
+
       })
 
-      console.log(this.state)
+    console.log(this.state)
 
   }
 
-  reset () {
+  reset() {
     this.setState({
       vege: '',
       eco: ''
@@ -88,7 +109,21 @@ class Store extends Component {
     return (
       <div className={styles.main}>
         <h1>KRUSHIGANUDENU STORE</h1>
-
+        <Modal style={{
+    top:'20%',
+    left:'30%',
+    right:'30%',
+    bottom:'20%',
+ 
+    }}
+        open={this.state.open}
+        onClose={this.handleClose}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+      >
+        <FarmerReview />
+      </Modal>
+      
         <div className={styles.filters}>
           <InputLabel className={styles.label} id="demo-simple-select-label">Vegetable</InputLabel>
           <Select
@@ -99,17 +134,17 @@ class Store extends Component {
             onChange={this.handleChange.bind(this)}
           >
 
-          <MenuItem value={'no filter'}>No filter (සියල්ල)</MenuItem>
-          <MenuItem value={'Potato (අල)'}>Potato (අල)</MenuItem>
-          <MenuItem value={'Beet (බීට්)'}>Beet (බීට්)</MenuItem>
-          <MenuItem value={'Carrot (කැරට්)'}>Carrot (කැරට්)</MenuItem>
-          <MenuItem value={'Pumpkin (වට්ටක්කා)'}>Pumpkin (වට්ටක්කා)</MenuItem>
-          <MenuItem value={'Cabbage (ගෝවා)'}>Cabbage (ගෝවා)</MenuItem>
-          <MenuItem value={'Brinjal (වම්බටු)'}>Brinjal (වම්බටු)</MenuItem>
-          <MenuItem value={'Beans (බෝංචි)'}>Beans (බෝංචි)</MenuItem>
-          <MenuItem value={'Tomato (තක්කාලි)'}>Tomato (තක්කාලි)</MenuItem>
-          <MenuItem value={'Chili (මිරිස්)'}>Chili (මිරිස්)</MenuItem>
-         
+            <MenuItem value={'no filter'}>No filter (සියල්ල)</MenuItem>
+            <MenuItem value={'Potato (අල)'}>Potato (අල)</MenuItem>
+            <MenuItem value={'Beet (බීට්)'}>Beet (බීට්)</MenuItem>
+            <MenuItem value={'Carrot (කැරට්)'}>Carrot (කැරට්)</MenuItem>
+            <MenuItem value={'Pumpkin (වට්ටක්කා)'}>Pumpkin (වට්ටක්කා)</MenuItem>
+            <MenuItem value={'Cabbage (ගෝවා)'}>Cabbage (ගෝවා)</MenuItem>
+            <MenuItem value={'Brinjal (වම්බටු)'}>Brinjal (වම්බටු)</MenuItem>
+            <MenuItem value={'Beans (බෝංචි)'}>Beans (බෝංචි)</MenuItem>
+            <MenuItem value={'Tomato (තක්කාලි)'}>Tomato (තක්කාලි)</MenuItem>
+            <MenuItem value={'Chili (මිරිස්)'}>Chili (මිරිස්)</MenuItem>
+
           </Select>
 
           <InputLabel className={styles.label} >Eco Centre</InputLabel>
@@ -124,9 +159,9 @@ class Store extends Component {
             <MenuItem value={'Dambulla'}>Dambulla</MenuItem>
           </Select>
 
-          <br/>
+          <br />
 
-          <Button style={{marginTop: 10}} variant="contained" color="green" onPress={this.reset}>Reset Filters</Button>
+          <Button style={{ marginTop: 10 }} variant="contained" color="green" onPress={this.reset}>Reset Filters</Button>
         </div>
 
         <div className={styles.items}>
@@ -136,7 +171,7 @@ class Store extends Component {
               <Grid container justify="center" spacing={2}>
                 {this.state.veges.map((value) => (
                   <Grid key={value} item>
-                    {this.state.vege === 'no filter' || this.state.vege.substring(0,5) === value.crop.substring(0,5) || (this.state.vege.substring(0,5) === value.crop.substring(0,5) && this.state.eco === value.economicCenter) || this.state.vege === '' ?
+                    {this.state.vege === 'no filter' || this.state.vege.substring(0, 5) === value.crop.substring(0, 5) || (this.state.vege.substring(0, 5) === value.crop.substring(0, 5) && this.state.eco === value.economicCenter) || this.state.vege === '' ?
                       <Paper style={{
                         height: 530, backgroundColor: 'white',
                         width: 300
@@ -144,13 +179,13 @@ class Store extends Component {
                         <div style={{ padding: 10 }}>
                           <h4>{value.crop}</h4>
                           <h5>{value.quantity}kg</h5>
-                          <h5>{value.name}</h5>
+                          <h5 onClick={() => this.goToFarmerReview(value.uid)}>{value.name}</h5>
                           <h5>{value.economicCenter}</h5>
                           <div style={{ display: 'flex' }}>
                             <Button variant="outlined" color="primary">
                               details
 </Button>
-                            <Button onClick={() => this.handlenav(value.crop, value.quantity, value.image, value.name, value.economicCenter,  value.uid)} variant="outlined" color="secondary">
+                            <Button onClick={() => this.handlenav(value.crop, value.quantity, value.image, value.name, value.economicCenter, value.uid)} variant="outlined" color="secondary">
                               buy
 </Button></div>
                         </div>

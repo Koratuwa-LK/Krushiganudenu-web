@@ -15,6 +15,7 @@ import signUp from './signUp';
 import Poolanalysis from './components/pool/poolanalysis';
 import Croplocations from './components/croplocations/croplocations';
 import Cropsfiller from './components/croplocations/cropsfiller';
+import FarmerReview from './components/reviewModule/farmerReview';
 
 
 function App() {
@@ -30,10 +31,11 @@ function App() {
           <PrivateRoute exact path='/checkout' component={Checkout} />
           <PrivateRoute exact path='/request' component={Request} />
           <PrivateRoute exact path='/pool' component={Pool} />
-          <Route exact path='/farmer' component={Farmer} />
+         {/*  <Route exact path='/farmer' component={Farmer} /> */}
           <Route exact path='/comparison' component={Poolanalysis} />
           <Route exact path='/croplocations' component={Croplocations} />
           <Route exact path='/cropsfill' component={Cropsfiller} />
+          <Route exact path='/farmer/:uid' component={FarmerReview} />
       </Switch>
     </div>
   </Router>
