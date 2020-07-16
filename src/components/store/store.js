@@ -9,6 +9,7 @@ import Paper from '@material-ui/core/Paper';
 import { Button } from '@material-ui/core';
 import instance from '../../stocks-list';
 import FarmerReview from '../reviewModule/farmerReview';
+import { resolvePlugin } from '@babel/core';
 
 class Store extends Component {
 
@@ -17,18 +18,21 @@ class Store extends Component {
 
     veges: [],
     eco: '',
-    open:false
+    open: false,
+    uid:null
   }
 
-   handleOpen = () => {
+  
+
+  handleOpen = () => {
     this.setState({
-      ...this.state,open:true
+      ...this.state, open: true
     })
   };
 
-   handleClose = () => {
+  handleClose = () => {
     this.setState({
-      ...this.state,open:false
+      ...this.state, open: false
     })
   };
 
@@ -66,8 +70,21 @@ class Store extends Component {
 
   goToFarmerReview(e) {
     console.log(e)
-    this.handleOpen();
-    
+
+    this.setState({
+      ...this.state,uid:e
+    })
+   /*  setTimeout(()=>{
+      this.handleOpen();
+    },1000) */
+    var settingUptheuid = new Promise((resolve,reject)=>{
+      this.setState({
+        ...this.state,uid:e
+      })
+      resolve();
+    })
+
+    settingUptheuid.then(()=>this.handleOpen());
   }
 
   componentDidMount() {
@@ -90,11 +107,12 @@ class Store extends Component {
             )
           }
           this.setState({ veges: tempStock })
+          
         }
 
       })
 
-    console.log(this.state)
+
 
   }
 
@@ -110,20 +128,21 @@ class Store extends Component {
       <div className={styles.main}>
         <h1>KRUSHIGANUDENU STORE</h1>
         <Modal style={{
-    top:'20%',
-    left:'30%',
-    right:'30%',
-    bottom:'20%',
- 
-    }}
-        open={this.state.open}
-        onClose={this.handleClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-      >
-        <FarmerReview />
-      </Modal>
-      
+          top: '20%',
+          left: '30%',
+          right: '30%',
+          bottom: '20%',
+
+        }}
+          open={this.state.open}
+          onClose={this.handleClose}
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+        >
+
+          <FarmerReview uid={this.state.uid} />
+        </Modal>
+
         <div className={styles.filters}>
           <InputLabel className={styles.label} id="demo-simple-select-label">Vegetable</InputLabel>
           <Select
@@ -161,16 +180,16 @@ class Store extends Component {
 
           <br />
 
-          <Button style={{ marginTop: 10 }} variant="contained" color="green" onPress={this.reset}>Reset Filters</Button>
+          <Button style={{ marginTop: 10 }} variant="contained" onClick={this.reset}>Reset Filters</Button>
         </div>
 
         <div className={styles.items}>
 
-          <Grid container>
+           <Grid container>
             <Grid item xs={12}>
               <Grid container justify="center" spacing={2}>
                 {this.state.veges.map((value) => (
-                  <Grid key={value} item>
+                  <Grid value={value} key={value.timestamp} item>
                     {this.state.vege === 'no filter' || this.state.vege.substring(0, 5) === value.crop.substring(0, 5) || (this.state.vege.substring(0, 5) === value.crop.substring(0, 5) && this.state.eco === value.economicCenter) || this.state.vege === '' ?
                       <Paper style={{
                         height: 530, backgroundColor: 'white',
@@ -194,7 +213,7 @@ class Store extends Component {
                 ))}
               </Grid>
             </Grid>
-          </Grid>
+          </Grid> 
 
         </div>
       </div>
