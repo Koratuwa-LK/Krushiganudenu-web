@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import './farmerreview.css'
@@ -37,39 +37,51 @@ const useStyles = makeStyles({
 
 
 
-function FarmerReview({uid}) {
+function FarmerReview({ uid }) {
     const [hover, setHover] = useState(-1);
     const classes = useStyles();
-    const [state,setState]=useState({
-        comment:'',
-        name:'',
-        rating:''
+    const [state, setState] = useState({
+        comment: '',
+        name: '',
+        rating: ''
     })
 
-    const [ratings,setRating]=useState()
 
-    useEffect(()=>{
-        
-    },[])
-    
+    const [reviews, setReviews] = useState({ reviewlist: [] })
+    //const [reviews, setReviews] = useState()
 
-    function handleInputChange(e){
-        var {name,value}=e.target
+    useEffect(() => {
+        firebase.database().ref(`Farmers/${uid}/reviews/`).on("value", snapshot => {
+
+            let tempReviewList = [];
+            snapshot.forEach(snap => {
+                tempReviewList.push(snap.val());
+            });
+            setReviews({ reviewlist: tempReviewList });
+
+        })
+
+
+    }, [])
+
+
+    function handleInputChange(e) {
+        var { name, value } = e.target
         setState({
             ...state,
-            [name]:value
+            [name]: value
         })
- 
+
     }
 
-    function handleFormSubmit(e){
+    function handleFormSubmit(e) {
         e.preventDefault();
         var timestamp = moment().unix();
         firebase.database().ref('Farmers/').child(`${uid}`).child('reviews').child(`${timestamp}`).set({
-            ...state
-        }).then((res)=>{
+            ...state, id: timestamp
+        }).then((res) => {
             console.log("Success")
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log(error)
         })
     }
@@ -93,10 +105,10 @@ function FarmerReview({uid}) {
 
 
                             <Grid item xs={12} align="left">
-                                <TextField  label="Your Review" fullWidth multiline name="comment" onChange={handleInputChange} value={state.comment}/>
+                                <TextField label="Your Review" fullWidth multiline name="comment" onChange={handleInputChange} value={state.comment} />
                             </Grid>
                             <Grid item xs={12} align="left">
-                                <TextField  label="Your Name" fullWidth name="name" onChange={handleInputChange} value={state.name}/>
+                                <TextField label="Your Name" fullWidth name="name" onChange={handleInputChange} value={state.name} />
                             </Grid>
                             <div style={{ marginTop: '20px' }}>
                                 <Grid item xs={12} align="center">
@@ -107,7 +119,7 @@ function FarmerReview({uid}) {
                                         onChange={(event, newValue) => {
                                             //setrating(newValue);
                                             setState({
-                                                ...state,rating:newValue
+                                                ...state, rating: newValue
                                             })
 
                                         }}
@@ -126,80 +138,36 @@ function FarmerReview({uid}) {
                                 </div>
                                 <div style={{ marginTop: '20px' }}>
                                     <Grid item xs={12} align="center">
-                                        {/* <Card variant="outlined">
-                                            <CardContent>
+                                        {
+                                            reviews.reviewlist.slice(0).reverse().map(value => {
+                                                return (
+                                                    <div key={value.id}>
+                                                        
+                                                        <Card variant="outlined">
+                                                            <CardContent>
 
-                                                <Rating
-                                                    name="hover-feedback"
-                                                    value={rating}
-                                                    precision={0.5}
-                                                    
-                                                />
-                                                
-                                                <Typography color="textSecondary">
-                                                    adjective
-                                                </Typography>
-                                                <Typography variant="body2" component="p">
-                                                    well meaning and kindly.
-                                                <br />
-                                                    {'"a benevolent smile"'}
-                                                </Typography>
-                                            </CardContent>
-                                        </Card> */}
-                                    </Grid>
-                                    <Grid item xs={12} align="center">
-                                        {/* <Card variant="outlined">
-                                            <CardContent>
+                                                                <Rating
+                                                                    name="hover-feedback"
+                                                                    value={value.rating}
+                                                                    precision={0.5}
+                                                                    disabled
+                                                                />
 
-                                                <Rating
-                                                    name="hover-feedback"
-                                                    value={rating}
-                                                    precision={0.5}
-                                                    onChange={(event, newValue) => {
-                                                        setrating(newValue);
-                                                    }}
-                                                    onChangeActive={(event, newHover) => {
-                                                        setHover(newHover);
-                                                    }}
-                                                />
-                                                <Typography color="textSecondary">
-                                                    adjective
-                                                </Typography>
-                                                <Typography variant="body2" component="p">
-                                                    well meaning and kindly.
-                                                <br />
-                                                    {'"a benevolent smile"'}
-                                                </Typography>
-                                            </CardContent>
-                                        </Card> */}
-                                    </Grid>
-                                    <Grid item xs={12} align="center">
-                                        {/* <Card variant="outlined">
-                                            <CardContent>
+                                                                <Typography color="textSecondary">
+                                                                    {value.name}
+                                                                </Typography>
+                                                                <Typography variant="body2" component="p">
+                                                                    {value.comment} 
+                                                                </Typography>
+                                                            </CardContent>
+                                                        </Card>
+                                                    </div>
+                                                )
+                                            })
+                                        }
 
-                                                <Rating
-                                                    name="hover-feedback"
-                                                    value={rating}
-                                                    precision={0.5}
-                                                    onChange={(event, newValue) => {
-                                                        setrating(newValue);
-                                                    }}
-                                                    onChangeActive={(event, newHover) => {
-                                                        setHover(newHover);
-                                                    }}
-                                                />
-                                                <Typography color="textSecondary">
-                                                    adjective
-                                                </Typography>
-                                                <Typography variant="body2" component="p">
-                                                    well meaning and kindly.
-                                                <br />
-                                                    {'"a benevolent smile"'}
-                                                </Typography>
-                                            </CardContent>
-                                        </Card> */}
+
                                     </Grid>
-                                
                                 </div>
                             </div>
                         </form>
