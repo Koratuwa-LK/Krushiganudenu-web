@@ -10,6 +10,7 @@ import { Button } from '@material-ui/core';
 import instance from '../../stocks-list';
 import FarmerReview from '../reviewModule/farmerReview';
 import { resolvePlugin } from '@babel/core';
+import Tooltip from '@material-ui/core/Tooltip';
 
 class Store extends Component {
 
@@ -19,10 +20,10 @@ class Store extends Component {
     veges: [],
     eco: '',
     open: false,
-    uid:null
+    uid: null
   }
 
-  
+
 
   handleOpen = () => {
     this.setState({
@@ -72,19 +73,19 @@ class Store extends Component {
     console.log(e)
 
     this.setState({
-      ...this.state,uid:e
+      ...this.state, uid: e
     })
-   /*  setTimeout(()=>{
-      this.handleOpen();
-    },1000) */
-    var settingUptheuid = new Promise((resolve,reject)=>{
+    /*  setTimeout(()=>{
+       this.handleOpen();
+     },1000) */
+    var settingUptheuid = new Promise((resolve, reject) => {
       this.setState({
-        ...this.state,uid:e
+        ...this.state, uid: e
       })
       resolve();
     })
 
-    settingUptheuid.then(()=>this.handleOpen());
+    settingUptheuid.then(() => this.handleOpen());
   }
 
   componentDidMount() {
@@ -107,7 +108,7 @@ class Store extends Component {
             )
           }
           this.setState({ veges: tempStock })
-          
+
         }
 
       })
@@ -185,7 +186,7 @@ class Store extends Component {
 
         <div className={styles.items}>
 
-           <Grid container>
+          <Grid container>
             <Grid item xs={12}>
               <Grid container justify="center" spacing={2}>
                 {this.state.veges.map((value) => (
@@ -198,22 +199,25 @@ class Store extends Component {
                         <div style={{ padding: 10 }}>
                           <h4>{value.crop}</h4>
                           <h5>{value.quantity}kg</h5>
-                          <h5 onClick={() => this.goToFarmerReview(value.uid)}>{value.name}</h5>
+                          
+                          <Tooltip title="Click To add or view Reviews" placement="top">
+                          <h5 className={styles.review} onClick={() => this.goToFarmerReview(value.uid)} >{value.name}</h5>
+            </Tooltip>
                           <h5>{value.economicCenter}</h5>
                           <div style={{ display: 'flex' }}>
                             <Button variant="outlined" color="primary">
                               details
-</Button>
+                            </Button>
                             <Button onClick={() => this.handlenav(value.crop, value.quantity, value.image, value.name, value.economicCenter, value.uid)} variant="outlined" color="secondary">
                               buy
-</Button></div>
+                            </Button></div>
                         </div>
                       </Paper> : null}
                   </Grid>
                 ))}
               </Grid>
             </Grid>
-          </Grid> 
+          </Grid>
 
         </div>
       </div>

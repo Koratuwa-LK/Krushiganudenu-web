@@ -39,3 +39,14 @@ h1{
     padding: 50px;
     font-family: 'Roboto', sans-serif;
 }
+
+.review{
+    cursor:pointer;
+    text-decoration:underline;
+}
+
+.review:hover{
+    font-size: 15px;
+    transition: 0.3s;
+    color:orange;
+}
