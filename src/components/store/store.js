@@ -20,7 +20,8 @@ class Store extends Component {
     veges: [],
     eco: '',
     open: false,
-    uid: null
+    uid: null,
+    name:null
   }
 
 
@@ -69,23 +70,21 @@ class Store extends Component {
     })
   }
 
-  goToFarmerReview(e) {
-    console.log(e)
+  goToFarmerReview(uid,name) {
+    
 
-    this.setState({
-      ...this.state, uid: e
-    })
-    /*  setTimeout(()=>{
-       this.handleOpen();
-     },1000) */
-    var settingUptheuid = new Promise((resolve, reject) => {
+  /*   this.setState({
+      ...this.state, uid: uid,Farmer:name
+    }) */
+   
+    var settingUptheuidandName = new Promise((resolve, reject) => {
       this.setState({
-        ...this.state, uid: e
+        ...this.state, uid: uid,Farmer:name
       })
       resolve();
     })
 
-    settingUptheuid.then(() => this.handleOpen());
+    settingUptheuidandName.then(() => this.handleOpen());
   }
 
   componentDidMount() {
@@ -201,7 +200,7 @@ class Store extends Component {
                           <h5>{value.quantity}kg</h5>
                           
                           <Tooltip title="Click To add or view Reviews" placement="top">
-                          <h5 className={styles.review} onClick={() => this.goToFarmerReview(value.uid)} >{value.name}</h5>
+                          <h5 className={styles.review} onClick={() => this.goToFarmerReview(value.uid,value.name)} >{value.name}</h5>
             </Tooltip>
                           <h5>{value.economicCenter}</h5>
                           <div style={{ display: 'flex' }}>

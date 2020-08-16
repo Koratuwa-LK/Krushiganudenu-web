@@ -37,7 +37,7 @@ const useStyles = makeStyles({
 
 
 
-function FarmerReview({ uid },{name}) {
+function FarmerReview({ uid, name }) {
     const [hover, setHover] = useState(-1);
     const classes = useStyles();
     const [state, setState] = useState({
@@ -108,12 +108,12 @@ function FarmerReview({ uid },{name}) {
                     justify="center"
                     alignItems="center">
                     <Grid item xs={5} align="left">
-                    <h3>Thushara</h3>
+                        <h3>{name}</h3>
                     </Grid>
                     <Grid item xs={5} align="right">
                         <h1 style={{ color: '#f7766d' }}>{realRating}/5</h1>
                     </Grid>
-                    <Grid style={{padding:'5px'}}item xs={10} align="right">
+                    <Grid style={{ padding: '5px' }} item xs={10} align="right">
                         <Rating
                             name="hover-feedback"
                             value={realRating}
