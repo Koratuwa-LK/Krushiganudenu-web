@@ -37,7 +37,7 @@ const useStyles = makeStyles({
 
 
 
-function FarmerReview({ uid }) {
+function FarmerReview({ uid },{name}) {
     const [hover, setHover] = useState(-1);
     const classes = useStyles();
     const [state, setState] = useState({
@@ -45,6 +45,8 @@ function FarmerReview({ uid }) {
         name: '',
         rating: ''
     })
+
+    const [realRating, setRealRating] = useState(0);
 
 
     const [reviews, setReviews] = useState({ reviewlist: [] })
@@ -54,11 +56,20 @@ function FarmerReview({ uid }) {
         firebase.database().ref(`Farmers/${uid}/reviews/`).on("value", snapshot => {
 
             let tempReviewList = [];
+            let tempRealRating = [];
+
             snapshot.forEach(snap => {
                 tempReviewList.push(snap.val());
+                tempRealRating.push(snap.val()['rating'])
             });
             setReviews({ reviewlist: tempReviewList });
+            let ratingtotal = tempRealRating.reduce((a, b) => {
+                return a + b
+            })
 
+            let avg = ratingtotal / tempRealRating.length;
+            let roundedAvg = Math.round(avg * 10) / 10
+            setRealRating(roundedAvg)
         })
 
 
@@ -96,8 +107,19 @@ function FarmerReview({ uid }) {
                     direction="row"
                     justify="center"
                     alignItems="center">
-                    <Grid item xs={10} align="left">
-                        <h3>Thushara</h3>
+                    <Grid item xs={5} align="left">
+                    <h3>Thushara</h3>
+                    </Grid>
+                    <Grid item xs={5} align="right">
+                        <h1 style={{ color: '#f7766d' }}>{realRating}/5</h1>
+                    </Grid>
+                    <Grid style={{padding:'5px'}}item xs={10} align="right">
+                        <Rating
+                            name="hover-feedback"
+                            value={realRating}
+                            precision={0.5}
+                            disabled
+                        />
                     </Grid>
 
                     <Grid item xs={10} align="center">
@@ -142,7 +164,7 @@ function FarmerReview({ uid }) {
                                             reviews.reviewlist.slice(0).reverse().map(value => {
                                                 return (
                                                     <div key={value.id}>
-                                                        
+
                                                         <Card variant="outlined">
                                                             <CardContent>
 
@@ -157,7 +179,7 @@ function FarmerReview({ uid }) {
                                                                     {value.name}
                                                                 </Typography>
                                                                 <Typography variant="body2" component="p">
-                                                                    {value.comment} 
+                                                                    {value.comment}
                                                                 </Typography>
                                                             </CardContent>
                                                         </Card>

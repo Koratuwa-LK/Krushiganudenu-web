@@ -141,7 +141,7 @@ class Store extends Component {
           aria-describedby="simple-modal-description"
         >
 
-          <FarmerReview uid={this.state.uid} />
+          <FarmerReview uid={this.state.uid} name={this.state.Farmer}/>
         </Modal>
 
         <div className={styles.filters}>
