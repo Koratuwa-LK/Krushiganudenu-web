@@ -115,7 +115,7 @@ function FarmerReview({ uid, name }) {
                     </Grid>
                     <Grid style={{ padding: '5px' }} item xs={10} align="right">
                         <Rating
-                            name="hover-feedback"
+                            name="hoverFeedback"
                             value={realRating}
                             precision={0.5}
                             disabled
