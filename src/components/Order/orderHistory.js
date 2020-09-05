@@ -11,6 +11,13 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import firebase from '../../firebase';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
+
 var moment = require('moment');
 
 
@@ -30,6 +37,8 @@ const useStyles = makeStyles({
 function OrderHistory() {
 
     const [orders, setOrders] = useState({ orderList: [] })
+    const [open, setOpen] = React.useState(false);
+    const [orderToBeDeleted, setOrderToBeDeleted] = React.useState(null);
 
     useEffect(() => {
 
@@ -41,25 +50,16 @@ function OrderHistory() {
 
             const tempOrders = [];
 
-            /* if(Custorders!=null){
-                for (let key in Custorders) {
-                    if (Custorders[key]['BuyerId'] === uid) {
-                        tempOrders.push({
-                            [key]:Custorders
-                        })
-                    }
-                }
-            } */
 
             for (let key in Custorders) {
-                
+
                 if (Custorders[key]['BuyerId'] === uid) {
                     tempOrders.push({
                         orders: Custorders[key],
                         orderId: key
                     })
                 }
-                
+
             }
 
             setOrders({
@@ -67,21 +67,7 @@ function OrderHistory() {
             })
 
 
-            /* for (let key in Custorders) {
-                if (Custorders[key]['BuyerId'] === uid) {
-                    tempOrders.push({
-                        [key]: Custorders[key]
-                    })
-                }
-            }
 
-            console.log(tempOrders)
-            setOrders(tempOrders)
-
-
-            setTimeout(() => {
-                console.log(orders)
-            }, 3000) */
 
         }
         )
@@ -91,12 +77,58 @@ function OrderHistory() {
     }, [])
 
 
+    function deleteOrder(orderId) {
+        console.log(orderId)
+        setOrderToBeDeleted(orderId)
+        handleClickOpen();
+    }
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const handleCloseandDelete = () =>{
+        setOpen(false);
+        console.log(orderToBeDeleted)
+        async function dltOrder(){
+            //admin.ref(`/users/${userid}`).remove()
+            await firebase.database().ref(`orders/${orderToBeDeleted}`).remove()
+        }
+
+        dltOrder();
+        setOpen(false);
+    }
 
 
     return (
 
         <div className="main">
             <div className="box">
+                <Dialog
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                >
+                    <DialogTitle id="alert-dialog-title">{"Do You Want to Delete the Order?"}</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            Deleting this order will result the loss of the particular order record.
+          </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleClose} color="primary">
+                            Cancel
+                     </Button>
+                        <Button onClick={handleCloseandDelete} color="secondary" autoFocus>
+                            Ok
+                    </Button>
+                    </DialogActions>
+                </Dialog>
                 <Grid container spacing={5}
                     direction="row"
                     justify="center"
@@ -140,19 +172,19 @@ function OrderHistory() {
                                                     <Typography variant="body2" component="p">
                                                         economicCenter: {val.orders.economicCenter}
                                                     </Typography>
-                                                    
 
-                                                 <Grid item xs={12} align="center" style={{marginTop:"5px"}}>
-                                                 <Button
-                                                        variant="outlined"
-                                                        color="secondary"
-                                                        size='small'
-                                                        startIcon={<DeleteIcon />}
-                                                        
-                                                    >
-                                                        Delete
+
+                                                    <Grid item xs={12} align="center" style={{ marginTop: "5px" }}>
+                                                        <Button
+                                                            variant="outlined"
+                                                            color="secondary"
+                                                            size='small'
+                                                            startIcon={<DeleteIcon />}
+                                                            onClick={() => deleteOrder(val.orderId)}
+                                                        >
+                                                            Delete
                                                  </Button>
-                                                 </Grid>
+                                                    </Grid>
                                                 </CardContent>
                                             </Card>
                                         </div>
