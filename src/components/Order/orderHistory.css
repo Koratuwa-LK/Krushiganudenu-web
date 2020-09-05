@@ -1,0 +1,21 @@
+
+
+.main{
+    width: 40vw;
+    height: 70vh;
+    background-color: white;
+  
+    flex-direction: column;
+    display: flex;
+    border-radius: 10px;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.box{
+    margin-top: 5%;
+}
+
+.reviewField{
+    margin-top: 5%;
+}

@@ -16,7 +16,7 @@ import Poolanalysis from './components/pool/poolanalysis';
 import Croplocations from './components/croplocations/croplocations';
 import Cropsfiller from './components/croplocations/cropsfiller';
 import FarmerReview from './components/reviewModule/farmerReview';
-
+import OrderHistory from './components/Order/orderHistory';
 
 function App() {
   return(
@@ -36,6 +36,7 @@ function App() {
           <Route exact path='/croplocations' component={Croplocations} />
           <Route exact path='/cropsfill' component={Cropsfiller} />
           <Route exact path='/farmer/:uid' component={FarmerReview} />
+          <Route exact path='/orders/' component={OrderHistory} />
       </Switch>
     </div>
   </Router>

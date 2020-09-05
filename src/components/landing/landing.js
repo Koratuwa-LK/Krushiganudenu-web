@@ -15,6 +15,8 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Tooltip from '@material-ui/core/Tooltip';
 import imgback from '../../assets/2562092.jpg';
+import Modal from '@material-ui/core/Modal';
+import OrderHistory from '../Order/orderHistory';
 
 function Landing() {
 
@@ -22,7 +24,8 @@ function Landing() {
     const [lang, setlang] = useState('')
 
     const { currentUser } = useContext(AuthContext);
-
+    const [open, setOpen] = useState(false)
+    
     function changelang(e) {
         setlang(e.target.value)
         i18n.changeLanguage(e.target.value)
@@ -30,132 +33,159 @@ function Landing() {
 
     const [age, setAge] = React.useState('');
 
+    function handleOpen(){
+        setOpen(true)
+      };
+    
+     function handleClose(){
+        setOpen(false)
+      };
+
 
     return (
 
 
         <div>
-        <div className={styles.responsive}>
-        <div className={styles.imgresponse}>
-        <img className={styles.imgresponseimg} src="https://images.unsplash.com/photo-1503762687835-129cc7a277e5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1576&q=80" ></img>
-        </div>
-        <div className={styles.textresponse}>
-        {/* <h2 style={{color: 'white'}}>Please use our mobile app</h2>
+            <Modal style={{
+          top: '20%',
+          left: '30%',
+          right: '30%',
+          bottom: '20%',
+
+        }}
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+        >
+
+          <OrderHistory />
+        </Modal>
+            <div className={styles.responsive}>
+                <div className={styles.imgresponse}>
+                    <img className={styles.imgresponseimg} src="https://images.unsplash.com/photo-1503762687835-129cc7a277e5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1576&q=80" ></img>
+                </div>
+                <div className={styles.textresponse}>
+                    {/* <h2 style={{color: 'white'}}>Please use our mobile app</h2>
         <h2><a href="">Get it</a></h2> */}
-        <h2 style={{color: '#55e05f'}}>KrushiGanudenu</h2>
-        {/* <h2><a href="">Get it</a></h2> */}
+                    <h2 style={{ color: '#55e05f' }}>KrushiGanudenu</h2>
+                    {/* <h2><a href="">Get it</a></h2> */}
 
-        <div className={styles.btnresponse}>
-                    <h4>
-                        <Link to="/login">
-                            <a>SIGN IN</a>
-                        </Link>
-                    </h4>
+                    <div className={styles.btnresponse}>
+                        <h4>
+                            <Link to="/login">
+                                <a>SIGN IN</a>
+                            </Link>
+                        </h4>
 
+                    </div>
+
+                    <div className={styles.btnresponse}>
+                        <h4>
+                            <Link to="/store">
+                                <a>MARKETPLACE</a>
+                            </Link>
+                        </h4>
+
+                    </div>
+
+
+                    <div className={styles.btnresponse}>
+                        <h4>
+                            <Link to="/request">
+                                <a>STOCK REQUEST</a>
+                            </Link>
+                        </h4>
+
+                    </div>
+
+
+
+                    <div className={styles.btnresponse}>
+                        <h4>
+                            <Link to="/croplocations">
+                                <a>GROWERS IN THE ISLAND</a>
+                            </Link>
+                        </h4>
+
+                    </div>
                 </div>
-
-                <div className={styles.btnresponse}>
-                    <h4>
-                        <Link to="/store">
-                            <a>MARKETPLACE</a>
-                        </Link>
-                    </h4>
-
-                </div>
-
-                
-                <div className={styles.btnresponse}>
-                    <h4>
-                        <Link to="/request">
-                            <a>STOCK REQUEST</a>
-                        </Link>
-                    </h4>
-
-                </div>
-
-                
-                <div className={styles.btnresponse}>
-                    <h4>
-                        <Link to="/croplocations">
-                            <a>GROWERS IN THE ISLAND</a>
-                        </Link>
-                    </h4>
-
-                </div>
-        </div>
-        </div>
-
-        <div className={styles.main}>
-        
-            <div className={styles.hold}>
-                <img src={img}></img>
             </div>
-            <nav>
-                <ul className={styles.navlinks}>
-                    <li>{t('home')}</li>
-                    <li><a href="/store">{t('marketplace')}</a></li>
-                    <li>{t('aboutus')}</li>
 
-                    <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={lang}
-                        onChange={changelang}
-                    >
-                        <MenuItem value='en'>English</MenuItem>
-                        <MenuItem value='sn'>සිංහල</MenuItem>
-                    </Select>
+            <div className={styles.main}>
 
-                    {currentUser !== null &&
-                        <li style={{ cursor: "pointer" }} onClick={() => app.auth().signOut()}>
-                             <Tooltip title={t('logout')}>
-                            <ExitToAppIcon />
-                            </Tooltip>
+                <div className={styles.hold}>
+                    <img src={img}></img>
+                </div>
+                <nav>
+                    <ul className={styles.navlinks}>
+                        <li>{t('home')}</li>
+                        <li><a href="/store">{t('marketplace')}</a></li>
+                        <li onClick={handleOpen}>ORDERS</li>
+                        <li>{t('aboutus')}</li>
+
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={lang}
+                            onChange={changelang}
+                        >
+                            <MenuItem value='en'>English</MenuItem>
+                            <MenuItem value='sn'>සිංහල</MenuItem>
+                        </Select>
+
+                        {currentUser !== null &&
+                            <li style={{ cursor: "pointer" }} onClick={() => app.auth().signOut()}>
+                                <Tooltip title={t('logout')}>
+                                    <ExitToAppIcon />
+                                </Tooltip>
                             </li>
-                    }
-                </ul>
+                        }
+                    </ul>
 
-            </nav>
+                </nav>
 
-            <div className={styles.slug}>
-                <h1>KRUSHIGANUDENU.LK</h1>
-                <p>krushiganudenu krushiganudenu krushiganudenu krushiganudenu krushiganudenu krushiganudenu</p>
-            </div>
-
-
-
-            {currentUser === null &&
-                <div className={styles.btn}>
-                    <h4>
-                        <Link to="/login">
-                            <a>SIGN IN</a>
-                        </Link>
-                    </h4>
-
+                <div className={styles.slug}>
+                    <h1>KRUSHIGANUDENU.LK</h1>
+                    <p>krushiganudenu krushiganudenu krushiganudenu krushiganudenu krushiganudenu krushiganudenu</p>
                 </div>
 
-                
-            }
 
-            <div className={styles.btn4}>
-            <h4>
+
+                {currentUser === null &&
+                    <div className={styles.btn}>
+                        <h4>
+                            <Link to="/login">
+                                <a>SIGN IN</a>
+                            </Link>
+                        </h4>
+
+                    </div>
+
+
+                }
+
+                
+
+                <div className={styles.btn4}>
+                    <h4>
                         <Link to="/croplocations">
                             <a>GROWERS IN THE ISLAND</a>
                         </Link>
                     </h4>
+                </div>
+
+
+
+
+
+                <div className={styles.btn2}>
+
+                    <h4><a href="/request">{t('stockrequest')}</a></h4></div>
+
             </div>
 
 
-            
-
-
-            <div className={styles.btn2}>
-
-                <h4><a href="/request">{t('stockrequest')}</a></h4></div>
-
-        </div>
-
-        
         </div>
     )
 }
