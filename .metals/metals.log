@@ -14,3 +14,5 @@ INFO  time: initialize in 2.92s
 WARN  no build tool detected in workspace 'c:\Users\Chulaka\Desktop\New folder (3)\website-right'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
 INFO  time: initialize in 9.41s
 WARN  no build tool detected in workspace 'c:\Users\Chulaka\Desktop\New folder (3)\website-right'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+INFO  time: initialize in 3.35s
+WARN  no build tool detected in workspace 'c:\Users\Chulaka\Desktop\New folder (3)\website-right'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
