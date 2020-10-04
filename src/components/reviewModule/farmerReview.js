@@ -63,13 +63,21 @@ function FarmerReview({ uid, name }) {
                 tempRealRating.push(snap.val()['rating'])
             });
             setReviews({ reviewlist: tempReviewList });
-            let ratingtotal = tempRealRating.reduce((a, b) => {
-                return a + b
-            })
 
-            let avg = ratingtotal / tempRealRating.length;
-            let roundedAvg = Math.round(avg * 10) / 10
-            setRealRating(roundedAvg)
+            if(tempRealRating.length!=0){
+                let ratingtotal = tempRealRating.reduce((a, b) => {
+                    return a + b
+                },0)
+                
+                let avg = ratingtotal / tempRealRating.length;
+                let roundedAvg = Math.round(avg * 10) / 10
+                console.log(roundedAvg)
+               
+                    setRealRating(roundedAvg)
+             
+            }
+            
+            
         })
 
 
