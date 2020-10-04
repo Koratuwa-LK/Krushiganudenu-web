@@ -6,7 +6,7 @@ import Select from '@material-ui/core/Select';
 import Grid from '@material-ui/core/Grid';
 
 import Paper from '@material-ui/core/Paper';
-import { Button } from '@material-ui/core';
+import { Button, Slider } from '@material-ui/core';
 import instance from '../../stocks-list';
 
 class Store extends Component {
@@ -15,7 +15,8 @@ class Store extends Component {
     vege: 'no filter',
 
     veges: [],
-    eco: 'no filter'
+    eco: 'no filter',
+    pricerange: 100
   }
 
   handleChange(event) {
@@ -84,6 +85,16 @@ class Store extends Component {
     })
   }
 
+  valuetext(value) {
+    return `${value}°C`;
+}
+
+handleChangeprice = (event, freshval) => {
+  this.setState({
+      pricerange: freshval
+  })
+}
+
   render() {
     return (
       <div className={styles.main}>
@@ -126,6 +137,21 @@ class Store extends Component {
           <MenuItem value={'no filter'}>No filter (සියල්ල)</MenuItem>
           </Select>
 
+          <InputLabel className={styles.label} >Max price (Rs) {this.state.pricerange}</InputLabel>
+          <div className={styles.slider}>
+                            <Slider
+                                defaultValue={this.state.pricerange}
+                                getAriaValueText={this.valuetext}
+                                aria-labelledby="discrete-slider"
+                                valueLabelDisplay="auto"
+                                step={10}
+                                onChange={this.handleChangeprice}
+                                marks
+                                min={10}
+                                max={500}
+                            />
+                        </div>
+
           <br/>
 
           {/* <Button style={{marginTop: 10}} variant="contained" color="green" onPress={() => {this.setState({vege: 'no filter', eco: 'hey'})}}>Reset Filters</Button> */}
@@ -139,21 +165,22 @@ class Store extends Component {
                 {this.state.veges.map((value) => (
                   <Grid key={value} item>
                     {/* {this.state.vege === 'no filter' || this.state.eco === 'no filter' || (this.state.vege.substring(0,5) === value.crop.substring(0,5) && this.state.eco === 'no filter') || this.state.eco === value.economicCenter || (this.state.vege.substring(0,5) === value.crop.substring(0,5) && this.state.eco === value.economicCenter)  ?    */}
-                      {(this.state.vege == 'no filter' && this.state.eco == 'no filter' || value.economicCenter == this.state.eco || this.state.vege.substring(0,5) == value.crop.substring(0,5)) && (this.state.vege == 'no filter' || this.state.vege.substring(0,5) == value.crop.substring(0,5)) ? 
+                      {(this.state.vege == 'no filter' && this.state.eco == 'no filter' || value.economicCenter == this.state.eco || this.state.vege.substring(0,5) == value.crop.substring(0,5)) && (this.state.vege == 'no filter' || this.state.vege.substring(0,5) == value.crop.substring(0,5)) && this.state.pricerange >= value.price ? 
                       <Paper style={{
                         /* height: 530, */ backgroundColor: 'white',
                         width: 300
                       }} > <img style={{ height: 280, width: 300, objectFit: 'cover' }} src={value.image}></img>
                         <div style={{ padding: 10 }}>
-                          <h4>{value.crop}</h4>
-                          <h5>{value.quantity}kg</h5>
-                          <h5>{value.name}</h5>
-                          <h5>{value.economicCenter}</h5>
+                          <h4 style={{marginTop: 2}}>{value.crop}</h4>
+                          <h5 style={{marginTop: 2}}>{value.quantity} kg</h5>
+                          <h5 style={{marginTop: 2}}>Rs {value.price} per kg (asking)</h5>
+                          <h5 style={{marginTop: 2}}>{value.name}</h5>
+                          <h5 style={{marginTop: 2}}>{value.economicCenter}</h5>
                           <div style={{ display: 'flex' }}>
                             {/* <Button variant="outlined" color="primary">
                               details
 </Button> */}
-                            <Button style={{width: '100%'}} onClick={() => this.handlenav(value.crop, value.quantity, value.image, value.name, value.economicCenter,  value.uid)} variant="outlined" color="secondary">
+                            <Button style={{marginTop: 2,width: '100%'}} onClick={() => this.handlenav(value.crop, value.quantity, value.image, value.name, value.economicCenter,  value.uid)} variant="outlined" color="secondary">
                               buy request
 </Button></div>
                         </div>
