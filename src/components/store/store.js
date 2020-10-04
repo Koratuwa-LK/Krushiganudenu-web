@@ -6,7 +6,7 @@ import Select from '@material-ui/core/Select';
 import Grid from '@material-ui/core/Grid';
 import Modal from '@material-ui/core/Modal';
 import Paper from '@material-ui/core/Paper';
-import { Button } from '@material-ui/core';
+import { Button, Slider } from '@material-ui/core';
 import instance from '../../stocks-list';
 import FarmerReview from '../reviewModule/farmerReview';
 import { resolvePlugin } from '@babel/core';
@@ -15,16 +15,14 @@ import Tooltip from '@material-ui/core/Tooltip';
 class Store extends Component {
 
   state = {
-    vege: '',
-
+    vege: 'no filter',
     veges: [],
-    eco: '',
+    eco: 'no filter',
+    pricerange: 100,
     open: false,
     uid: null,
     name:null
   }
-
-
 
   handleOpen = () => {
     this.setState({
@@ -123,9 +121,22 @@ class Store extends Component {
     })
   }
 
+  valuetext(value) {
+    return `${value}°C`;
+}
+
+handleChangeprice = (event, freshval) => {
+  this.setState({
+      pricerange: freshval
+  })
+}
+
   render() {
     return (
       <div className={styles.main}>
+
+        <h1 style={{marginBottom: 40}}>KRUSHIGANUDENU STORE</h1>
+
         <h1>KRUSHIGANUDENU STORE</h1>
         <Modal style={{
           top: '20%',
@@ -142,6 +153,7 @@ class Store extends Component {
 
           <FarmerReview uid={this.state.uid} name={this.state.Farmer}/>
         </Modal>
+
 
         <div className={styles.filters}>
           <InputLabel className={styles.label} id="demo-simple-select-label">Vegetable</InputLabel>
@@ -176,11 +188,34 @@ class Store extends Component {
           >
             <MenuItem value={'Meegoda'}>Meegoda</MenuItem>
             <MenuItem value={'Dambulla'}>Dambulla</MenuItem>
+            
+          <MenuItem value={'no filter'}>No filter (සියල්ල)</MenuItem>
           </Select>
+
+
+          <InputLabel className={styles.label} >Max price (Rs) {this.state.pricerange}</InputLabel>
+          <div className={styles.slider}>
+                            <Slider
+                                defaultValue={this.state.pricerange}
+                                getAriaValueText={this.valuetext}
+                                aria-labelledby="discrete-slider"
+                                valueLabelDisplay="auto"
+                                step={10}
+                                onChange={this.handleChangeprice}
+                                marks
+                                min={10}
+                                max={500}
+                            />
+                        </div>
+
+          <br/>
+
+          {/* <Button style={{marginTop: 10}} variant="contained" color="green" onPress={() => {this.setState({vege: 'no filter', eco: 'hey'})}}>Reset Filters</Button> */}
 
           <br />
 
           <Button style={{ marginTop: 10 }} variant="contained" onClick={this.reset}>Reset Filters</Button>
+
         </div>
 
         <div className={styles.items}>
@@ -189,27 +224,40 @@ class Store extends Component {
             <Grid item xs={12}>
               <Grid container justify="center" spacing={2}>
                 {this.state.veges.map((value) => (
-                  <Grid value={value} key={value.timestamp} item>
-                    {this.state.vege === 'no filter' || this.state.vege.substring(0, 5) === value.crop.substring(0, 5) || (this.state.vege.substring(0, 5) === value.crop.substring(0, 5) && this.state.eco === value.economicCenter) || this.state.vege === '' ?
+
+                  <Grid key={value} item>
+                    {/* {this.state.vege === 'no filter' || this.state.eco === 'no filter' || (this.state.vege.substring(0,5) === value.crop.substring(0,5) && this.state.eco === 'no filter') || this.state.eco === value.economicCenter || (this.state.vege.substring(0,5) === value.crop.substring(0,5) && this.state.eco === value.economicCenter)  ?    */}
+                      {(this.state.vege == 'no filter' && this.state.eco == 'no filter' || value.economicCenter == this.state.eco || this.state.vege.substring(0,5) == value.crop.substring(0,5)) && (this.state.vege == 'no filter' || this.state.vege.substring(0,5) == value.crop.substring(0,5)) && this.state.pricerange >= value.price ? 
+
                       <Paper style={{
-                        height: 530, backgroundColor: 'white',
+                        /* height: 530, */ backgroundColor: 'white',
                         width: 300
                       }} > <img style={{ height: 280, width: 300, objectFit: 'cover' }} src={value.image}></img>
                         <div style={{ padding: 10 }}>
+
+                          <h4 style={{marginTop: 2}}>{value.crop}</h4>
+                          <h5 style={{marginTop: 2}}>{value.quantity} kg</h5>
+                          <h5 style={{marginTop: 2}}>Rs {value.price} per kg (asking)</h5>
+                          <h5 style={{marginTop: 2}}>{value.name}</h5>
+                          <h5 style={{marginTop: 2}}>{value.economicCenter}</h5>
+
                           <h4>{value.crop}</h4>
                           <h5>{value.quantity}kg</h5>
                           
                           <Tooltip title="Click To add or view Reviews" placement="top">
                           <h5 className={styles.review} onClick={() => this.goToFarmerReview(value.uid,value.name)} >{value.name}</h5>
-            </Tooltip>
+                          </Tooltip>
                           <h5>{value.economicCenter}</h5>
+
                           <div style={{ display: 'flex' }}>
-                            <Button variant="outlined" color="primary">
+                            {/* <Button variant="outlined" color="primary">
                               details
-                            </Button>
-                            <Button onClick={() => this.handlenav(value.crop, value.quantity, value.image, value.name, value.economicCenter, value.uid)} variant="outlined" color="secondary">
-                              buy
-                            </Button></div>
+
+</Button> */}
+                            <Button style={{marginTop: 2,width: '100%'}} onClick={() => this.handlenav(value.crop, value.quantity, value.image, value.name, value.economicCenter,  value.uid)} variant="outlined" color="secondary">
+                              buy request
+</Button></div>
+
                         </div>
                       </Paper> : null}
                   </Grid>

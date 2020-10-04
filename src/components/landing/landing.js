@@ -101,6 +101,37 @@ function Landing() {
 
 
 
+        <div className={styles.main}>
+        
+            <div className={styles.hold}>
+                <img src={img}></img>
+            </div>
+            <nav>
+                <ul className={styles.navlinks}>
+                    {/* <li>{t('home')}</li> */}
+                    <li><a href="/store">{t('marketplace')}</a></li>
+                    <li><a href="/aboutus">{t('aboutus')}</a></li>
+
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={lang}
+                        onChange={changelang}
+                    >
+                        <MenuItem value='en'>English</MenuItem>
+                        <MenuItem value='sn'>සිංහල</MenuItem>
+                    </Select>
+
+                    {currentUser !== null &&
+                        <li style={{ cursor: "pointer" }} onClick={() => app.auth().signOut()}>
+                             <Tooltip title={t('logout')}>
+                            <ExitToAppIcon />
+                            </Tooltip>
+                            </li>
+                    }
+                </ul>
+
+
                     <div className={styles.btnresponse}>
                         <h4>
                             <Link to="/croplocations">
@@ -108,8 +139,12 @@ function Landing() {
                             </Link>
                         </h4>
 
-                    </div>
-                </div>
+
+            <div className={styles.slug}>
+                <h1>KRUSHIGANUDENU.LK</h1>
+                <p style={{padding: 10}}>Online marketplace where farmers and buyers can meet overcoming all the physical barriers in the island.Competitive price ranges and quick sell out is our promise.</p>
+
+
             </div>
 
             <div className={styles.main}>

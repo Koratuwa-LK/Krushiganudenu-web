@@ -1,23 +1,34 @@
+body {
+    background-color: #C2E6D8;
+}
+
 .main {
     height: 100%;
 }
 
 .tile {
     height: auto;
-    background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+    /* background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%); */
+    /* background-image: 'linear-gradient(120deg, #313131 0%, #313131 100%)'; */
+    background: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.15) 100%), radial-gradient(at top center, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.40) 120%) #989898;
+ background-blend-mode: multiply,multiply;
     font-family: 'Roboto', sans-serif;
-    padding: 20px
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
 }
 
 .textfield {
     width: 250px;
-    margin-bottom: 10px
+    margin-bottom: 10px;
 }
 
 .label {
-    margin-top: 20px
+    margin-top: 20px;
+    color: white
 }
 .select {
     width: 200px;
     margin-top: 10px
 }
+
