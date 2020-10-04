@@ -9,8 +9,12 @@ h1{
     justify-content: center;
     font-family: 'Roboto', sans-serif;
     height: 200px;
-    /* background-color: white; */
-    background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+    background-color: white;
+    border-width: 10px;
+    border-color: darkgreen;
+    border-radius: 10px;
+
+    /* background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%); */
     text-align: center;
 
     padding: 20px

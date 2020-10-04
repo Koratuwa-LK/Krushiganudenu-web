@@ -11,7 +11,7 @@ class Checkout extends Component {
         size: 10,
         buyer: '',
         location: '',
-        price: 0.00,
+        price: '',
         phone: ''
 
     }
@@ -98,19 +98,19 @@ class Checkout extends Component {
         console.log(this.props)
         return (
             <div>
-                <h1>CHECKOUT</h1>
+                <h1 style={{marginBottom: 40}}>BUY REQUEST FORM</h1>
 
 
 
                 <div className={styles.checkout}>
                     <div className={styles.tile}>
-                        <img style={{ height: 400, width: 400, objectFit: 'cover' }} src={this.props.location.state.img}>
+                        <img style={{ height: 368, width: 400, objectFit: 'cover', borderRadius: 10 }} src={this.props.location.state.img}>
                         </img>
-                        <h4>{this.props.location.state.vege}</h4>
-                        <h4>{this.props.location.state.seller}</h4>
-                        <h4>{this.props.location.state.eco_centre}</h4>
-                        <h4>stock {this.props.location.state.size}kg</h4>
-                        <h5>size <span>{this.state.size}</span>(kg)</h5>
+                        <h4 style={{marginTop: 10}}>{this.props.location.state.vege}</h4>
+                        <h4 style={{marginTop: 10}}>{this.props.location.state.seller}</h4>
+                        <h4 style={{marginTop: 10}}>{this.props.location.state.eco_centre}</h4>
+                        <h4 style={{marginTop: 10}}>Stock remaining {this.props.location.state.size}kg</h4>
+                        <h5 style={{marginTop: 10}}>size <span>{this.state.size}</span>(kg)</h5>
                         <div className={styles.slider}>
 
                             <Slider
@@ -126,16 +126,22 @@ class Checkout extends Component {
                             />
                         </div>
                         <div className={styles.textfield}>
-                            <TextField required label="Name" defaultValue="name" onChange={this.handleChangebuyer.bind(this)} value={this.state.buyer} />
+                            <TextField required label="Name" defaultValue="name" onChange={this.handleChangebuyer.bind(this)} value={this.state.buyer} InputLabelProps={{
+                                style: {
+                                    color: 'white'}}}/>
                             <br />
-                            <TextField required label="Phone" defaultValue="Phone" onChange={this.handleChangephone.bind(this)} value={this.state.phone} />
+                            <TextField required label="Phone number" defaultValue="Phone" onChange={this.handleChangephone.bind(this)} value={this.state.phone} InputLabelProps={{
+                                style: {
+                                    color: 'white'}}}/>
                             <br />
-                            <TextField required label="Price you ask" defaultValue="Price you ask" onChange={this.handleChangeprice.bind(this)} value={this.state.price} />
+                            <TextField required label="Price you ask (Rs)" defaultValue="Price you ask" onChange={this.handleChangeprice.bind(this)} value={this.state.price} InputLabelProps={{
+                                style: {
+                                    color: 'white'}}}/>
                             
                         </div>
 
                         <Button variant="contained" onClick={() => { this.checkout() }} color="primary">
-                            checkout
+                            send buy request
                         </Button>
                     </div>
                 </div>

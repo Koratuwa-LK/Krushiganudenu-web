@@ -78,8 +78,8 @@ class Request extends Component {
     render () {
         return (
             <div className={styles.main}>
-            <h1>REQUEST STOCKS</h1>
-            <a href="/pool">CHECK THE POOL</a>
+            <h1 style={{marginBottom: 10}}>REQUEST STOCKS</h1>
+            <a href="/pool" style={{color: '#f57e42'}}>CHECK CURRENT REQUESTS SUMMARY</a>
 
            
         <Grid container justify="center" spacing={2}>
@@ -88,21 +88,27 @@ class Request extends Component {
         <h4>Fill out the request</h4>
         <TextField
         value={this.state.name}
-        onChange={this.handleChangename.bind(this)} className={styles.textfield} variant="filled" required label="Name" placeholder="Name" />
+        onChange={this.handleChangename.bind(this)} className={styles.textfield} variant="filled" required label="Name" placeholder="Name" InputLabelProps={{
+            style:{color: 'white'}
+        }} />
         <br/>
         <TextField
         value={this.state.location}
-        onChange={this.handleChangelocation.bind(this)} className={styles.textfield} multiline rows={4} variant="filled" required label="Location" placeholder="Location" />
+        onChange={this.handleChangelocation.bind(this)} className={styles.textfield} multiline rows={4} variant="filled" required label="Location (address)" placeholder="Location" InputLabelProps={{
+            style:{color: 'white'}
+        }}/>
 
         <br/>
 
         <TextField
         value={this.state.price}
-        onChange={this.handleChangeprice.bind(this)} className={styles.textfield} variant="filled" required label="Price you ask(rs)" placeholder="Price you ask" />
+        onChange={this.handleChangeprice.bind(this)} className={styles.textfield} variant="filled" required label="Price you ask (Rs)" placeholder="Price you ask" InputLabelProps={{
+            style:{color: 'white'}
+        }}/>
 
         <br/>
 
-        <InputLabel className={styles.label} id="demo-simple-select-label">Vegetable</InputLabel>
+        <InputLabel className={styles.label} id="demo-simple-select-label" style={{color: 'white'}}>Vegetable</InputLabel>
         <Select
         variant="filled"
         className={styles.select}
@@ -123,7 +129,7 @@ class Request extends Component {
           
         </Select>
 
-        <InputLabel className={styles.label} >Eco Centre</InputLabel>
+        <InputLabel className={styles.label} style={{color: 'white'}}>Eco Centre</InputLabel>
         <Select
         variant="filled"
         className={styles.select}
@@ -138,7 +144,7 @@ class Request extends Component {
 
         <br/>
 
-        <InputLabel className={styles.label} >size (kg)</InputLabel>
+        <InputLabel className={styles.label} style={{color: 'white'}}>size (kg)</InputLabel>
      
 
         <Slider
@@ -155,7 +161,7 @@ class Request extends Component {
       />
 
       <br/>
-      <InputLabel className={styles.label} >Stock clearence method</InputLabel>
+      <InputLabel className={styles.label} style={{color: 'white'}}>Stock clearence method</InputLabel>
      
       <RadioGroup aria-label="gender" name="gender1" value={this.state.shipping} onChange={this.handleChangeshipping.bind(this)}>
         <FormControlLabel value="ship" style={{color: 'black'}} control={<Radio />} label="Ship with cash on delivery" color="black"/>

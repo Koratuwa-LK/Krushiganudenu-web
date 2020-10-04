@@ -68,6 +68,16 @@ body {
 
 }
 
+
+.legeninner {
+    display: none;
+     
+    text-align: 'center'; 
+    width: '100%'; 
+    justify-content: 'center';
+    align-items: 'center'
+}
+
 @media only screen and (max-width: 450px) {
     .box {
         width: 80%;
@@ -86,6 +96,18 @@ body {
         display: inline;
     }
  */
+ .legen {
+     display: none
+ }
+ .legeninner {
+    display: block;
+    position: relative;
+    margin-top: 280px; 
+    text-align: 'center'; 
+    width: '100%'; 
+    justify-content: 'center';
+    align-items: 'center'
+}
    
 }
 

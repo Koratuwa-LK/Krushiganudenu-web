@@ -125,6 +125,38 @@ class Croplocations extends Component {
             <img src={require ('../../assets/pointers/chili.png')}></img><h4 style={{fontSize: 15, fontWeight: 'bold'}}>Chili</h4>
         </div>
         </div>
+
+       
+        </div>
+
+        <div className={styles.legeninner}>
+        <div style={{padding: 10}}>
+            <img src={require ('../../assets/pointers/potato.png')}></img><h4 style={{fontSize: 15, fontWeight: 'bold'}}>Potato</h4>
+        </div>
+        <div style={{padding: 10}}>
+            <img src={require ('../../assets/pointers/beetpointers.png')}></img><h4 style={{fontSize: 15, fontWeight: 'bold'}}>Beet</h4>
+        </div>
+        <div style={{padding: 10}}>
+            <img src={require ('../../assets/pointers/brinjl.png')}></img><h4 style={{fontSize: 15, fontWeight: 'bold'}}>Brinjal</h4>
+        </div>
+        <div style={{padding: 10}}>
+            <img src={require ('../../assets/pointers/crot.png')}></img><h4 style={{fontSize: 15, fontWeight: 'bold'}}>Carrot</h4>
+        </div>
+        <div style={{padding: 10}}>
+            <img src={require ('../../assets/pointers/tmto.png')}></img><h4 style={{fontSize: 15, fontWeight: 'bold'}}>Tomato</h4>
+        </div>
+        <div style={{padding: 10}}>
+            <img src={require ('../../assets/pointers/bns.png')}></img><h4 style={{fontSize: 15, fontWeight: 'bold'}}>Beans</h4>
+        </div>
+        <div style={{padding: 10}}>
+            <img src={require ('../../assets/pointers/pmkin.png')}></img><h4 style={{fontSize: 15, fontWeight: 'bold'}}>Pumpkin</h4>
+        </div>
+        <div style={{padding: 10}}>
+            <img src={require ('../../assets/pointers/cabbage.png')}></img><h4 style={{fontSize: 15, fontWeight: 'bold'}}>Cabbage</h4>
+        </div>
+        <div style={{padding: 10}}>
+            <img src={require ('../../assets/pointers/chili.png')}></img><h4 style={{fontSize: 15, fontWeight: 'bold'}}>Chili</h4>
+        </div>
         </div>
 
 

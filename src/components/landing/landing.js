@@ -92,9 +92,9 @@ function Landing() {
             </div>
             <nav>
                 <ul className={styles.navlinks}>
-                    <li>{t('home')}</li>
+                    {/* <li>{t('home')}</li> */}
                     <li><a href="/store">{t('marketplace')}</a></li>
-                    <li>{t('aboutus')}</li>
+                    <li><a href="/aboutus">{t('aboutus')}</a></li>
 
                     <Select
                         labelId="demo-simple-select-label"
@@ -119,7 +119,7 @@ function Landing() {
 
             <div className={styles.slug}>
                 <h1>KRUSHIGANUDENU.LK</h1>
-                <p>krushiganudenu krushiganudenu krushiganudenu krushiganudenu krushiganudenu krushiganudenu</p>
+                <p style={{padding: 10}}>Online marketplace where farmers and buyers can meet overcoming all the physical barriers in the island.Competitive price ranges and quick sell out is our promise.</p>
             </div>
 
 
