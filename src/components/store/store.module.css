@@ -43,3 +43,20 @@ h1{
     padding: 50px;
     font-family: 'Roboto', sans-serif;
 }
+
+.review{
+    cursor:pointer;
+    text-decoration:underline;
+}
+
+.review:hover{
+    font-size: 15px;
+    transition: 0.2s;
+    color:#f7766d;
+}
+
+.review:active{
+    font-size: 14px;
+    transition: 0.05s;
+    color:#f7766d;
+}
