@@ -15,6 +15,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import imgback from '../../assets/2562092.jpg';
 import Modal from '@material-ui/core/Modal';
 import OrderHistory from '../Order/orderHistory';
+import DriverBooking from '../driverbooking/driverBooking';
 
 function Landing() {
 
@@ -23,6 +24,7 @@ function Landing() {
 
     const { currentUser } = useContext(AuthContext);
     const [open, setOpen] = useState(false)
+    const [openDriverBooking, setOpenDriverBooking] = useState(false)
 
     function changelang(e) {
         setlang(e.target.value)
@@ -37,6 +39,14 @@ function Landing() {
 
     function handleClose() {
         setOpen(false)
+    };
+
+    function handleOpenDriverModal() {
+        setOpenDriverBooking(true)
+    };
+
+    function handleCloseDriverModal() {
+        setOpenDriverBooking(false)
     };
 
 
@@ -59,14 +69,29 @@ function Landing() {
 
                 <OrderHistory />
             </Modal>
+            <Modal style={{
+                top: '20%',
+                left: '15%',
+                right: '15%',
+                bottom: '20%',
+
+            }}
+                open={openDriverBooking}
+                onClose={handleCloseDriverModal}
+                aria-labelledby="simple-modal-title"
+                aria-describedby="simple-modal-description"
+            >
+
+                < DriverBooking />
+            </Modal>
             <div className={styles.responsive}>
                 <div className={styles.imgresponse}>
                     <img className={styles.imgresponseimg} src="https://images.unsplash.com/photo-1503762687835-129cc7a277e5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1576&q=80" ></img>
                 </div>
                 <div className={styles.textresponse}>
-                    
+
                     <h2 style={{ color: '#55e05f' }}>KrushiGanudenu</h2>
-                    
+
 
                     <div className={styles.btnresponse}>
                         <h4>
@@ -116,12 +141,15 @@ function Landing() {
                 </div>
                 <nav>
                     <ul className={styles.navlinks}>
-                       
+
                         <li><a href="/store" style={{ color: '#3F3F8F' }}>{t('marketplace')}</a></li>
 
                         {currentUser != null &&
 
                             <li onClick={handleOpen} style={{ cursor: 'pointer', color: '#3F3F8F' }}>ORDERS</li>
+                        }
+                        {currentUser != null &&
+                            <li onClick={handleOpenDriverModal} style={{ cursor: 'pointer', color: '#3F3F8F' }}>DRIVERS</li>
                         }
                         <li><a href="/aboutus" style={{ color: '#3F3F8F' }}>{t('aboutus')}</a></li>
 

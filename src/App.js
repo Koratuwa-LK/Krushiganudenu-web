@@ -31,7 +31,6 @@ function App() {
           <PrivateRoute exact path='/checkout' component={Checkout} />
           <PrivateRoute exact path='/request' component={Request} />
           <PrivateRoute exact path='/pool' component={Pool} />
-         {/*  <Route exact path='/farmer' component={Farmer} /> */}
           <Route exact path='/comparison' component={Poolanalysis} />
           <Route exact path='/croplocations' component={Croplocations} />
           <Route exact path='/cropsfill' component={Cropsfiller} />

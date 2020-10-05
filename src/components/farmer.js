@@ -5,6 +5,9 @@ import axios from '../stocks-list';
 import { storage } from '../firebase';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
+/* This has been added only for the developing purposes. We have added it to simulate the 
+farmer request part. It is done on the farmer app in real.
+*/
 function Farmer() {
 
     const [details, setDetails] = useState({
