@@ -137,7 +137,7 @@ handleChangeprice = (event, freshval) => {
 
         <h1 style={{marginBottom: 40}}>KRUSHIGANUDENU STORE</h1>
 
-        <h1>KRUSHIGANUDENU STORE</h1>
+        
         <Modal style={{
           top: '20%',
           left: '30%',
@@ -214,7 +214,7 @@ handleChangeprice = (event, freshval) => {
 
           <br />
 
-          <Button style={{ marginTop: 10 }} variant="contained" onClick={this.reset}>Reset Filters</Button>
+          <Button style={{ marginTop: 10 }} variant="contained" onClick={() => {this.setState({vege: 'no filter', eco: 'no filter'})}}>Reset Filters</Button>
 
         </div>
 
@@ -235,11 +235,11 @@ handleChangeprice = (event, freshval) => {
                       }} > <img style={{ height: 280, width: 300, objectFit: 'cover' }} src={value.image}></img>
                         <div style={{ padding: 10 }}>
 
-                          <h4 style={{marginTop: 2}}>{value.crop}</h4>
-                          <h5 style={{marginTop: 2}}>{value.quantity} kg</h5>
+                          {/* <h4 style={{marginTop: 2}}>{value.crop}</h4> */}
+                          {/* <h5 style={{marginTop: 2}}>{value.quantity} kg</h5> */}
                           <h5 style={{marginTop: 2}}>Rs {value.price} per kg (asking)</h5>
-                          <h5 style={{marginTop: 2}}>{value.name}</h5>
-                          <h5 style={{marginTop: 2}}>{value.economicCenter}</h5>
+                          {/* <h5 style={{marginTop: 2}}>{value.name}</h5> */}
+                          {/* <h5 style={{marginTop: 2}}>{value.economicCenter}</h5> */}
 
                           <h4>{value.crop}</h4>
                           <h5>{value.quantity}kg</h5>

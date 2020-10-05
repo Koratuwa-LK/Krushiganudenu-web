@@ -101,37 +101,6 @@ function Landing() {
 
 
 
-        <div className={styles.main}>
-        
-            <div className={styles.hold}>
-                <img src={img}></img>
-            </div>
-            <nav>
-                <ul className={styles.navlinks}>
-                    {/* <li>{t('home')}</li> */}
-                    <li><a href="/store">{t('marketplace')}</a></li>
-                    <li><a href="/aboutus">{t('aboutus')}</a></li>
-
-                    <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={lang}
-                        onChange={changelang}
-                    >
-                        <MenuItem value='en'>English</MenuItem>
-                        <MenuItem value='sn'>සිංහල</MenuItem>
-                    </Select>
-
-                    {currentUser !== null &&
-                        <li style={{ cursor: "pointer" }} onClick={() => app.auth().signOut()}>
-                             <Tooltip title={t('logout')}>
-                            <ExitToAppIcon />
-                            </Tooltip>
-                            </li>
-                    }
-                </ul>
-
-
                     <div className={styles.btnresponse}>
                         <h4>
                             <Link to="/croplocations">
@@ -139,12 +108,8 @@ function Landing() {
                             </Link>
                         </h4>
 
-
-            <div className={styles.slug}>
-                <h1>KRUSHIGANUDENU.LK</h1>
-                <p style={{padding: 10}}>Online marketplace where farmers and buyers can meet overcoming all the physical barriers in the island.Competitive price ranges and quick sell out is our promise.</p>
-
-
+                    </div>
+                </div>
             </div>
 
             <div className={styles.main}>
@@ -154,10 +119,10 @@ function Landing() {
                 </div>
                 <nav>
                     <ul className={styles.navlinks}>
-                        <li>{t('home')}</li>
-                        <li><a href="/store">{t('marketplace')}</a></li>
-                        <li onClick={handleOpen}>ORDERS</li>
-                        <li>{t('aboutus')}</li>
+                        {/* <li>{t('home')}</li> */}
+                        <li><a href="/store" style={{color: '#3F3F8F'}}>{t('marketplace')}</a></li>
+                        <li onClick={handleOpen} style={{cursor: 'pointer', color: '#3F3F8F'}}>ORDERS</li>
+                        <li><a href="/aboutus" style={{color: '#3F3F8F'}}>{t('aboutus')}</a></li>
 
                         <Select
                             labelId="demo-simple-select-label"
@@ -182,7 +147,7 @@ function Landing() {
 
                 <div className={styles.slug}>
                     <h1>KRUSHIGANUDENU.LK</h1>
-                    <p>krushiganudenu krushiganudenu krushiganudenu krushiganudenu krushiganudenu krushiganudenu</p>
+                    <p style={{fontSize: 16,padding: 20, lineHeight: 2}}>Online marketplace where farmers & buyers can meet bypassing all the physical barriers.Competitive prices & quick sell out is our promise.</p>
                 </div>
 
 

@@ -138,8 +138,8 @@ class Request extends Component {
             value={this.state.eco_centre}
             onChange={this.handleChangeeco_centre.bind(this)}
         >
-          <MenuItem value={'eco 1'}>eco 1</MenuItem>
-          <MenuItem value={'eco 2'}>eco 2</MenuItem>
+          <MenuItem value={'Meegoda'}>Meegoda</MenuItem>
+            <MenuItem value={'Dambulla'}>Dambulla</MenuItem>
         </Select>
 
         <br/>

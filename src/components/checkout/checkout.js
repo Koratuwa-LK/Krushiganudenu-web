@@ -73,12 +73,15 @@ class Checkout extends Component {
             moment().format('MMMM Do YYYY, h:mm:ss a')
         )
 
-        axios.post('/orders.json', {  
-            Buyer: this.state.buyer, 
-            Crop: this.props.location.state.vege, 
+        axios.post('/orders.json', {
+            Accept: false,  
+            Buyer: this.state.buyer,
+            BuyerId: "doXDSv87z0WcampS5YZ7a4Shf6s2", 
+            CompleteOrder: false,
+            Crop: this.props.location.state.vege,
+            DeleteOrder: false, 
             economicCenter: this.props.location.state.eco_centre, 
             OrderDate: moment().format('MMMM Do YYYY'),
-            Accept: false,
             DesiredPrice: this.state.price,
             Farmer: this.props.location.state.Farmer,
             Quantity: this.state.size,
