@@ -30,7 +30,7 @@ function DriverBooking() {
     function getStepContent(step) {
         switch (step) {
             case 0:
-                return <SetLocationEcoCenter />;
+                return <SetLocationEcoCenter isMarkerShown />;
             case 1:
                 return 'Available Drivers';
             case 2:
