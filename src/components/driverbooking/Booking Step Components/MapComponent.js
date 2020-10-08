@@ -5,7 +5,7 @@ import MapPicker from 'react-google-map-picker'
 const DefaultLocation = { lat: 10, lng: 106};
 const DefaultZoom = 10;
  
-const SimpleMap = () => {
+const SimpleMap = (props) => {
  
   const [defaultLocation, setDefaultLocation] = useState(DefaultLocation);
  
@@ -14,6 +14,7 @@ const SimpleMap = () => {
  
   function handleChangeLocation (lat, lng){
     setLocation({lat:lat, lng:lng});
+    props.setLocation({lat:lat, lng:lng});
   }
   
   function handleChangeZoom (newZoom){
@@ -23,6 +24,7 @@ const SimpleMap = () => {
   function handleResetLocation(){
     setDefaultLocation({ ... DefaultLocation});
     setZoom(DefaultZoom);
+   
   }
  
   return (

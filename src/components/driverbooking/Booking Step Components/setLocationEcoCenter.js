@@ -20,41 +20,83 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+
+
 function SetLocationEcoCenter(props) {
+
+
+    useEffect(()=>{
+        localStorage.setItem('ecocenter',"Dambulla")
+    },[])
+
     const [ecoCenter, setEcoCenter] = React.useState('Dambulla');
+
+    const [mapVisible, SetMapVisible] = useState(false);
+
+    const [state,setState] = useState({
+        ecocenter:"Dambulla",
+        lat:null,
+        lng:null,
+    })
 
     const classes = useStyles();
 
     const handleChange = (event) => {
         setEcoCenter(event.target.value);
+        setState({
+            ...state,
+            ecocenter:event.target.value
+        })
+
+        localStorage.setItem('ecocenter',event.target.value)
     };
 
+    function SetEnableMap(){
+        SetMapVisible(true)
+    }
+
+     function setLocation (e){
+         setState({
+            ...state,
+            lat:e.lat,
+            lng:e.lng
+        })
+        
+        localStorage.setItem('lat',e.lat)
+        localStorage.setItem('lng',e.lng)
+
+    }
+
     return (
-        <div className="main1" >
+        <div className="main10" >
 
             <div className="main2">
-                <InputLabel id="demo-simple-select-label">Select Eco Center</InputLabel>
-                <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={ecoCenter}
-                    onChange={handleChange}
-                    autoWidth
-                >
-                    <MenuItem value={10}>Dambulla</MenuItem>
-                    <MenuItem value={20}>Meegoda</MenuItem>
+                <div className="main21">
+                    <InputLabel id="demo-simple-select-label">Select Eco Center</InputLabel>
+                    <Select
 
-                </Select>
-                <Button style={{marginTop:'20px'}}variant="contained" color="primary" disableElevation>
-                    Select Location
+                    fullWidth
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={state.ecocenter}
+                        onChange={handleChange}
+                        
+                    >
+                        <MenuItem value='Dambulla'>Dambulla</MenuItem>
+                        <MenuItem value='Meegoda'>Meegoda</MenuItem>
+
+                    </Select>
+                </div>
+                <div className="main22">
+                    <Button style={{ marginTop: '20px' }} variant="contained" color="primary" disableElevation onClick={SetEnableMap}>
+                        Select Location
                 </Button>
-
+                </div>
             </div>
             <div className="main3">
                 <div className="main4">
-                    <SimpleMap />
+                    {mapVisible?<SimpleMap setLocation={setLocation}/>:<div></div>}
                 </div>
-
             </div>
         </div>
     )
