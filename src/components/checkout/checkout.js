@@ -4,6 +4,7 @@ import Slider from '@material-ui/core/Slider';
 import { Button, Modal, TextField } from '@material-ui/core';
 import moment from 'moment';
 import axios from '../../stocks-list.js';
+import StorefrontIcon from '@material-ui/icons/Storefront';
 
 class Checkout extends Component {
 
@@ -13,7 +14,9 @@ class Checkout extends Component {
         location: '',
         price: '',
         phone: '',
-        showmessage: false
+        showmessage: false,
+        farmers: [],
+        comments: []
 
     }
 
@@ -21,6 +24,79 @@ class Checkout extends Component {
         this.setState({
             price: this.props.location.state.price
         })
+
+        console.log(this.props.location.state.name)
+
+        axios.get('/Farmers.json').then(response => {
+            console.log(response.data)
+
+            const comms = []
+            const obj = response.data
+            for(let key in obj) {
+                if(obj[key].name.slice(1,3) == this.props.location.state.name.slice(1,3)){
+                comms.push({
+                    id: key,
+                    name: obj[key].name,
+                    comments: obj[key].reviews,
+                    phone: obj[key].mobile,
+                    ecocenter: obj[key].economiccenter
+                })
+            }
+        }
+
+            this.setState({farmers: comms})
+
+            
+
+            const tempcomments = []
+            // const obj1 = {}
+            /* for(let farmersname in comms){
+                if (farmersname.name == this.props.location.state.name) {
+                const obj1 = farmersname.comments
+                for(let key in obj1) {
+                    tempcomments.push({
+                        id: key,
+                        comment: obj1[key].comment,
+                        name: obj1[key].name,
+                        rating: obj1[key].rating
+                    })
+                }
+            }
+            } */
+
+
+            /* var i;
+            for(i=0; i<=3; i++) {
+                if(this.state.farmers[i].name == this.props.location.state.name) {
+                    const obj1 = this.state.farmers[i].comments
+                    for(let key in obj1) {
+                        tempcomments.push({
+                            id: key,
+                            comment: obj1[key].comment,
+                            names: obj1[key].name,
+                            rating: obj1[key].rating
+                        })
+                    }
+                }
+            }
+ */
+            console.log(this.state.farmers)
+
+            const obj1 = this.state.farmers[0].comments
+            for(let key in obj1) {
+                tempcomments.push({
+                    id: key,
+                    comment: obj1[key].comment,
+                    name: obj1[key].name,
+                    rating: obj1[key].rating
+                })
+            }
+
+            console.log(tempcomments)
+
+            this.setState({comments: tempcomments})
+        })
+
     }
 
     handleChange = (event, freshval) => {
@@ -146,7 +222,7 @@ class Checkout extends Component {
                                 style: {
                                     color: 'white'}}}/>
                             <br />
-                            <TextField required label="Price you ask (Rs)" defaultValue="Price you ask" onChange={this.handleChangeprice.bind(this)} value={this.state.price} InputLabelProps={{
+                            <TextField label="Price you ask (Rs)" defaultValue="Price you ask" onChange={this.handleChangeprice.bind(this)} value={this.state.price} InputLabelProps={{
                                 style: {
                                     color: 'white'}}}/>
                             
@@ -165,7 +241,16 @@ class Checkout extends Component {
                                 {this.state.showmessage ? <div><h2>Your request has been sent successfully for {this.state.size} kgs of {this.props.location.state.vege} </h2></div> : null}
                                <Modal aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description" style={{marginTop: 400, backgroundColor: 'white'}} open={this.state.showmessage}
-        onClose={this.closemessage}><div><h2 style={{color: 'white'}}>Your request has been sent successfully for {this.state.size} kgs of {this.props.location.state.vege}</h2><br/><h4>Seller(farmer) will contact you soon</h4></div></Modal> 
+        onClose={this.closemessage}><div className={styles.paper}><h2>Your request has been sent successfully for {this.state.size} kgs of {this.props.location.state.vege}</h2><br/>
+        <h4>Seller(farmer) will contact you soon</h4>
+        <br/>
+        <h4>Discover more stocks while you wait </h4> <a href="/store" style={{color: 'green'}}><StorefrontIcon/></a>
+        </div></Modal> 
+
+        <div className={styles.commentsbox}>
+            <h4 style={{textAlign: 'center', marginBottom: 6}}>Reviews for the farmer</h4>
+                                {this.state.comments.map(comm => <div className={styles.tile1}><h4>"{comm.comment}"</h4> <p>{comm.rating}/5 - {comm.name}</p></div>) }
+        </div>
 
             </div>
 

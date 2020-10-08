@@ -51,7 +51,7 @@ class Store extends Component {
     console.log(this.state.vege)
   }
 
-  handlenav(vege1, size1, img1, seller1, eco_centre1, FarmerId, Farmer,) {
+  handlenav(name,vege1, size1, img1, seller1, eco_centre1, FarmerId, Farmer,) {
 
     this.props.history.push({
       pathname: '/checkout',
@@ -61,7 +61,8 @@ class Store extends Component {
         img: img1,
         eco_centre: eco_centre1,
         Farmer: seller1,
-        FarmerId: FarmerId
+        FarmerId: FarmerId,
+        name: name
 
       }
 
@@ -254,7 +255,7 @@ handleChangeprice = (event, freshval) => {
                               details
 
 </Button> */}
-                            <Button style={{marginTop: 2,width: '100%'}} onClick={() => this.handlenav(value.crop, value.quantity, value.image, value.name, value.economicCenter,  value.uid)} variant="outlined" color="secondary">
+                            <Button style={{marginTop: 2,width: '100%'}} onClick={() => this.handlenav(value.name, value.crop, value.quantity, value.image, value.name, value.economicCenter,  value.uid)} variant="outlined" color="secondary">
                               buy request
 </Button></div>
 

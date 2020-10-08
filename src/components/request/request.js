@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styles from './request.module.css';
 import { Grid, TextField, Select, MenuList, MenuItem, InputLabel, Slider, RadioGroup, FormControlLabel, Radio, Button } from '@material-ui/core';
 import axios from '../../stocks-list';
-
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 class Request extends Component {
 
     state = {
@@ -79,7 +79,7 @@ class Request extends Component {
         return (
             <div className={styles.main}>
             <h1 style={{marginBottom: 10}}>REQUEST STOCKS</h1>
-            <a href="/pool" style={{color: '#f57e42'}}>CHECK CURRENT REQUESTS SUMMARY</a>
+            {/* <a href="/pool" style={{color: '#f57e42'}}> */}CHECK CURRENT REQUESTS SUMMARY{/* </a> */} <a href="/pool" style={{color: '#f57e42'}}><ArrowForwardIcon style={{marginTop: 10}}/></a>
 
            
         <Grid container justify="center" spacing={2}>
