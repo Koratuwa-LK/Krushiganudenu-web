@@ -7,6 +7,9 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import './driverbooking.css'
 import SetLocationEcoCenter from './Booking Step Components/setLocationEcoCenter';
+import AvailabeDrivers from './Booking Step Components/availabeDrivers';
+import BookDriver from './Booking Step Components/bookDriver';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,20 +24,40 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+
+
 function DriverBooking() {
 
     function getSteps() {
         return ['Set Location & Eco Center', 'Available Drivers', 'Book Driver'];
     }
 
+    const [driverBookInfo,setDriverBookInfo] = useState({
+        drivername:null,
+        farmername:null,
+        farmernumer:null,
+        lat:null,
+        lng:null,
+        time:null,
+        ecocenter:null
+    })
+
+    function locationEcoCenter(e){
+        console.log(e)
+    }
+
+    function setdrivers(e){
+        console.log(e)
+    }
+
     function getStepContent(step) {
         switch (step) {
             case 0:
-                return <SetLocationEcoCenter isMarkerShown />;
+                return <SetLocationEcoCenter locationEcoCenter={locationEcoCenter}/>;
             case 1:
-                return 'Available Drivers';
+                return <AvailabeDrivers  ecoCenter={driverBookInfo.ecocenter} setdrivers={setdrivers}/>;
             case 2:
-                return 'Book Driver';
+                return <BookDriver />;
             default:
                 return 'Unknown step';
         }
