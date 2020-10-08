@@ -1,7 +1,5 @@
 import React, { useContext, useState } from 'react';
 import styles from './landing.module.css';
-// import img from '../../assets/svg 1.png';
-// import img from '../../assets/undraw_nature_m5l.svg';
 import img from '../../assets/landing.svg';
 import app from '../../firebase'
 import { Link } from 'react-router-dom'
@@ -17,6 +15,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import imgback from '../../assets/2562092.jpg';
 import Modal from '@material-ui/core/Modal';
 import OrderHistory from '../Order/orderHistory';
+import DriverBooking from '../driverbooking/driverBooking';
 
 function Landing() {
 
@@ -25,7 +24,8 @@ function Landing() {
 
     const { currentUser } = useContext(AuthContext);
     const [open, setOpen] = useState(false)
-    
+    const [openDriverBooking, setOpenDriverBooking] = useState(false)
+
     function changelang(e) {
         setlang(e.target.value)
         i18n.changeLanguage(e.target.value)
@@ -33,13 +33,21 @@ function Landing() {
 
     const [age, setAge] = React.useState('');
 
-    function handleOpen(){
+    function handleOpen() {
         setOpen(true)
-      };
-    
-     function handleClose(){
+    };
+
+    function handleClose() {
         setOpen(false)
-      };
+    };
+
+    function handleOpenDriverModal() {
+        setOpenDriverBooking(true)
+    };
+
+    function handleCloseDriverModal() {
+        setOpenDriverBooking(false)
+    };
 
 
     return (
@@ -47,29 +55,43 @@ function Landing() {
 
         <div>
             <Modal style={{
-          top: '20%',
-          left: '30%',
-          right: '30%',
-          bottom: '20%',
+                top: '20%',
+                left: '30%',
+                right: '30%',
+                bottom: '20%',
 
-        }}
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="simple-modal-title"
-          aria-describedby="simple-modal-description"
-        >
+            }}
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="simple-modal-title"
+                aria-describedby="simple-modal-description"
+            >
 
-          <OrderHistory />
-        </Modal>
+                <OrderHistory />
+            </Modal>
+            <Modal style={{
+                top: '20%',
+                left: '15%',
+                right: '15%',
+                bottom: '20%',
+
+            }}
+                open={openDriverBooking}
+                onClose={handleCloseDriverModal}
+                aria-labelledby="simple-modal-title"
+                aria-describedby="simple-modal-description"
+            >
+
+                < DriverBooking />
+            </Modal>
             <div className={styles.responsive}>
                 <div className={styles.imgresponse}>
                     <img className={styles.imgresponseimg} src="https://images.unsplash.com/photo-1503762687835-129cc7a277e5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1576&q=80" ></img>
                 </div>
                 <div className={styles.textresponse}>
-                    {/* <h2 style={{color: 'white'}}>Please use our mobile app</h2>
-        <h2><a href="">Get it</a></h2> */}
+
                     <h2 style={{ color: '#55e05f' }}>KrushiGanudenu</h2>
-                    {/* <h2><a href="">Get it</a></h2> */}
+
 
                     <div className={styles.btnresponse}>
                         <h4>
@@ -119,10 +141,17 @@ function Landing() {
                 </div>
                 <nav>
                     <ul className={styles.navlinks}>
-                        {/* <li>{t('home')}</li> */}
-                        <li><a href="/store" style={{color: '#3F3F8F'}}>{t('marketplace')}</a></li>
-                        <li onClick={handleOpen} style={{cursor: 'pointer', color: '#3F3F8F'}}>ORDERS</li>
-                        <li><a href="/aboutus" style={{color: '#3F3F8F'}}>{t('aboutus')}</a></li>
+
+                        <li><a href="/store" style={{ color: '#3F3F8F' }}>{t('marketplace')}</a></li>
+
+                        {currentUser != null &&
+
+                            <li onClick={handleOpen} style={{ cursor: 'pointer', color: '#3F3F8F' }}>ORDERS</li>
+                        }
+                        {currentUser != null &&
+                            <li onClick={handleOpenDriverModal} style={{ cursor: 'pointer', color: '#3F3F8F' }}>DRIVERS</li>
+                        }
+                        <li><a href="/aboutus" style={{ color: '#3F3F8F' }}>{t('aboutus')}</a></li>
 
                         <Select
                             labelId="demo-simple-select-label"
@@ -147,7 +176,7 @@ function Landing() {
 
                 <div className={styles.slug}>
                     <h1>KRUSHIGANUDENU.LK</h1>
-                    <p style={{fontSize: 16,padding: 20, lineHeight: 2}}>Online marketplace where farmers & buyers can meet bypassing all the physical barriers.Competitive prices & quick sell out is our promise.</p>
+                    <p style={{ fontSize: 16, padding: 20, lineHeight: 2 }}>Online marketplace where farmers & buyers can meet bypassing all the physical barriers.Competitive prices & quick sell out is our promise.</p>
                 </div>
 
 
@@ -165,7 +194,7 @@ function Landing() {
 
                 }
 
-                
+
 
                 <div className={styles.btn4}>
                     <h4>
