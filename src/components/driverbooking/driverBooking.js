@@ -26,7 +26,9 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-function DriverBooking() {
+function DriverBooking(props) {
+
+    
 
     function getSteps() {
         return ['Set Location & Eco Center', 'Available Drivers', 'Book Driver'];
@@ -57,7 +59,7 @@ function DriverBooking() {
             case 1:
                 return <AvailabeDrivers  ecoCenter={driverBookInfo.ecocenter} setdrivers={setdrivers}/>;
             case 2:
-                return <BookDriver />;
+                return <BookDriver handleCloseDriverModal={props.handleCloseDriverModal}/>;
             default:
                 return 'Unknown step';
         }
@@ -80,8 +82,19 @@ function DriverBooking() {
             newSkipped = new Set(newSkipped.values());
             newSkipped.delete(activeStep);
         }
+        
+        
+     
+        if(activeStep==0 && localStorage.getItem('lat')==null){
+            alert("Please Select the location")
+        }else if(activeStep==1 && localStorage.getItem('first_name')==null){
+            alert("Please Select The Driver You Want To Book")
+        }else if(activeStep==3 && localStorage.getItem('time')==null){
+            alert("Please FIll all the fields")
+        }else{
+            setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        }
 
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
         setSkipped(newSkipped);
     };
 
@@ -125,10 +138,10 @@ function DriverBooking() {
                         {activeStep === steps.length ? (
                             <div>
                                 <Typography className={classes.instructions}>
-                                    All steps completed - you&apos;re finished
+                                    You Have Successfully Cancelled the Request Process 
                 </Typography>
-                                <Button onClick={handleReset} className={classes.button}>
-                                    Reset
+                                <Button onClick={()=>props.handleCloseDriverModal()} className={classes.button}>
+                                    Close
                 </Button>
                             </div>
                         ) : (
@@ -145,8 +158,9 @@ function DriverBooking() {
                                             color="primary"
                                             onClick={handleNext}
                                             className={classes.button}
+                                            
                                         >
-                                            {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                                            {activeStep === steps.length - 1 ? 'Cancel' : 'Next'}
                                         </Button>
                                     </div>
                                 </div>

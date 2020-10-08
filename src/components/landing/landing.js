@@ -82,7 +82,7 @@ function Landing() {
                 aria-describedby="simple-modal-description"
             >
 
-                < DriverBooking />
+                < DriverBooking handleCloseDriverModal={handleCloseDriverModal}/>
             </Modal>
             <div className={styles.responsive}>
                 <div className={styles.imgresponse}>
