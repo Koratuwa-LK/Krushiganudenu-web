@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styles from './checkout.module.css';
 import Slider from '@material-ui/core/Slider';
-import { Button, TextField } from '@material-ui/core';
+import { Button, Modal, TextField } from '@material-ui/core';
 import moment from 'moment';
 import axios from '../../stocks-list.js';
 
@@ -12,7 +12,8 @@ class Checkout extends Component {
         buyer: '',
         location: '',
         price: '',
-        phone: ''
+        phone: '',
+        showmessage: false
 
     }
 
@@ -95,6 +96,14 @@ class Checkout extends Component {
                 console.log(err)
             })
 
+            this.setState({
+                showmessage: true
+            })
+
+    }
+
+    closemessage = () => {
+        this.setState({showmessage: false})
     }
 
     render() {
@@ -143,12 +152,20 @@ class Checkout extends Component {
                             
                         </div>
 
-                        <Button variant="contained" onClick={() => { this.checkout() }} color="primary">
+                        {this.state.phone == '' || this.state.buyer == '' /* || this.state.price == '' */ ? <Button variant="contained" disabled>send buy request</Button> : <Button variant="contained" onClick={() => { this.checkout() }} color="primary">
                             send buy request
-                        </Button>
+                        </Button>}
+
+
+
+                        
                     </div>
                 </div>
 
+                                {this.state.showmessage ? <div><h2>Your request has been sent successfully for {this.state.size} kgs of {this.props.location.state.vege} </h2></div> : null}
+                               <Modal aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description" style={{marginTop: 400, backgroundColor: 'white'}} open={this.state.showmessage}
+        onClose={this.closemessage}><div><h2 style={{color: 'white'}}>Your request has been sent successfully for {this.state.size} kgs of {this.props.location.state.vege}</h2><br/><h4>Seller(farmer) will contact you soon</h4></div></Modal> 
 
             </div>
 
