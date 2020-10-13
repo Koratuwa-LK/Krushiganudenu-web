@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import './orderHistory.css'
+import './notification.css'
 import TextField from '@material-ui/core/TextField';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
@@ -22,6 +22,8 @@ var moment = require('moment');
 
 
 
+
+
 const useStyles = makeStyles({
     root: {
         width: 200,
@@ -33,102 +35,63 @@ const useStyles = makeStyles({
 
 
 
+function NotificationPriceMatching() {
+    const classes = useStyles();
 
-function OrderHistory() {
+    const [notification, setNotification] = useState({ notificationList: [] })
 
     const [orders, setOrders] = useState({ orderList: [] })
     const [open, setOpen] = React.useState(false);
     const [orderToBeDeleted, setOrderToBeDeleted] = React.useState(null);
 
     useEffect(() => {
-
-        let uid = firebase.auth().currentUser.uid
-        //let uid = 'doXDSv87z0WcampS5YZ7a4Shf6s2'
-
-        firebase.database().ref('orders').on('value', (snapshot) => {
-            var Custorders = snapshot.val();
-
-            const tempOrders = [];
+        const BuyerId = firebase.auth().currentUser.uid;
 
 
-            for (let key in Custorders) {
+        let subscriptionlist;
+        let tempsubscriptionList = [];
+        let stockslist;
+        let tempstockList = [];
 
-                if (Custorders[key]['BuyerId'] === uid) {
-                    tempOrders.push({
-                        orders: Custorders[key],
-                        orderId: key
-                    })
-                }
-
+        const subscriptions = firebase.database().ref("sub").orderByChild("BuyerId").equalTo(BuyerId);
+        subscriptions.on('value', snapshot => {
+            const subscriptionlist = snapshot.val();
+            for (let key in subscriptionlist) {
+                tempsubscriptionList.push(subscriptionlist[key])
             }
+            const stocks = firebase.database().ref("Stocks");
+            stocks.on('value', snapshot => {
+                const stockslist = snapshot.val();
+                for (let key in stockslist) {
+                    tempstockList.push(stockslist[key])
+                }
+                const tempNotificationList = []
 
-            setOrders({
-                orderList: tempOrders
+                tempsubscriptionList.map(sub => {
+                    tempstockList.map(stock => {
+                        if ((sub['crop']) == stock['crop'] && (parseInt(sub['maxPrice']) > parseInt(stock['price'])) && (parseInt(sub['minPrice']) < parseInt(stock['price'])) && (parseInt(sub['quantity']) <= parseInt(stock['quantity']))) {
+                            tempNotificationList.push(stock)
+                        }
+                    })
+                })
+                setNotification({ notificationList: tempNotificationList })
             })
 
-
-
-
-        }
-        )
-
+        })
 
 
     }, [])
 
 
-    function deleteOrder(orderId) {
-        console.log(orderId)
-        setOrderToBeDeleted(orderId)
-        handleClickOpen();
-    }
 
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
 
-    const handleClose = () => {
-        setOpen(false);
-    };
-
-    const handleCloseandDelete = () =>{
-        setOpen(false);
-        console.log(orderToBeDeleted)
-        async function dltOrder(){
-            //admin.ref(`/users/${userid}`).remove()
-            await firebase.database().ref(`orders/${orderToBeDeleted}`).remove()
-        }
-
-        dltOrder();
-        setOpen(false);
-    }
 
 
     return (
 
         <div className="main">
             <div className="box">
-                <Dialog
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="alert-dialog-title"
-                    aria-describedby="alert-dialog-description"
-                >
-                    <DialogTitle id="alert-dialog-title">{"Do You Want to Delete the Order?"}</DialogTitle>
-                    <DialogContent>
-                        <DialogContentText id="alert-dialog-description">
-                            Deleting this order will result the loss of the particular order record.
-          </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={handleClose} color="primary">
-                            Cancel
-                     </Button>
-                        <Button onClick={handleCloseandDelete} color="secondary" autoFocus>
-                            Ok
-                    </Button>
-                    </DialogActions>
-                </Dialog>
+
                 <Grid container spacing={5}
                     direction="row"
                     justify="center"
@@ -136,46 +99,42 @@ function OrderHistory() {
 
 
                     <Grid item xs={10} align="center">
-                        <h2>Order History</h2>
+                        <h2>Price Matching Notifications</h2>
                     </Grid>
                     <div style={{ marginTop: '5px' }}>
                         <Grid item xs={12} align="left" >
                             {
-                                orders.orderList.map(val => {
+                                notification.notificationList.slice(0).reverse().map(val => {
                                     return (
-                                        <div key={val.orderId}>
+                                        <div key={val.timestamp}>
 
-                                            <Card variant="outlined" style={{ marginBottom: "10px" }}>
+                                            <Card variant="outlined" style={{ marginBottom: "10px",width:"400px" }}>
                                                 <CardContent>
 
-                                                    <Typography variant="body2" component="p">
-                                                        OrderId : {val.orderId}
+                                                    <Typography variant="h5" component="h2">
+                                                        {val.crop}
                                                     </Typography>
                                                     <Typography variant="body2" component="p">
-                                                        Crop Type: {val.orders.Crop}
+                                                        Farmer Name : {val.name}
                                                     </Typography>
                                                     <Typography variant="body2" component="p">
-                                                        Farmer: {val.orders.Farmer}
+                                                        Eco Center : {val.economicCenter}
                                                     </Typography>
                                                     <Typography variant="body2" component="p">
-                                                        FarmerId: {val.orders.FarmerId}
+                                                        Farmer Contact No : {val.phoneNum}
                                                     </Typography>
                                                     <Typography variant="body2" component="p">
-                                                        Mobile: {val.orders.Mobile}
+                                                        Price : {val.price}
                                                     </Typography>
                                                     <Typography variant="body2" component="p">
-                                                        Price: {val.orders.Price}
+                                                        Quantity : {val.quantity}
                                                     </Typography>
-                                                    <Typography variant="body2" component="p">
-                                                        Quantity: {val.orders.Quantity}
-                                                    </Typography>
-                                                    <Typography variant="body2" component="p">
-                                                        economicCenter: {val.orders.economicCenter}
-                                                    </Typography>
+
+
 
 
                                                     <Grid item xs={12} align="center" style={{ marginTop: "5px" }}>
-                                                        <Button
+                                                        {/*  <Button
                                                             variant="outlined"
                                                             color="secondary"
                                                             size='small'
@@ -183,7 +142,7 @@ function OrderHistory() {
                                                             onClick={() => deleteOrder(val.orderId)}
                                                         >
                                                             Delete
-                                                 </Button>
+                                                 </Button> */}
                                                     </Grid>
                                                 </CardContent>
                                             </Card>
@@ -205,5 +164,5 @@ function OrderHistory() {
 
 
 
-export default OrderHistory
+export default NotificationPriceMatching
 
