@@ -17,6 +17,7 @@ import Croplocations from './components/croplocations/croplocations';
 import Cropsfiller from './components/croplocations/cropsfiller';
 import FarmerReview from './components/reviewModule/farmerReview';
 import OrderHistory from './components/Order/orderHistory';
+import Requestnew from './components/request/requestnew';
 
 function App() {
   return(
@@ -29,7 +30,8 @@ function App() {
           <Route exact path="/signup" component={signUp} />
           <Route exact path='/store' component={Store} />
           <PrivateRoute exact path='/checkout' component={Checkout} />
-          <PrivateRoute exact path='/request' component={Request} />
+          {/* <PrivateRoute exact path='/request' component={Request} /> */}
+          <PrivateRoute exact path='/request' component={Requestnew} />
           <PrivateRoute exact path='/pool' component={Pool} />
           <Route exact path='/comparison' component={Poolanalysis} />
           <Route exact path='/croplocations' component={Croplocations} />
