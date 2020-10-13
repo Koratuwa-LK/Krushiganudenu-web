@@ -171,7 +171,7 @@ function Landing() {
                 <nav>
                     <ul className={styles.navlinks}>
 
-                        <li><a href="/store" style={{ color: '#3F3F8F' }}>{t('marketplace')}</a></li>
+                        {/* <li><a href="/store" style={{ color: '#3F3F8F' }}>{t('marketplace')}</a></li> */}
 
                         {currentUser != null &&
 
@@ -228,6 +228,11 @@ function Landing() {
                 }
 
 
+<div className={styles.btn3}>
+
+                    <h4><a href="/store">{t('marketplace')}</a></h4>
+
+            </div>
 
                 <div className={styles.btn4}>
                     <h4>
@@ -237,6 +242,8 @@ function Landing() {
                     </h4>
                 </div>
 
+               
+
 
 
 
@@ -244,6 +251,8 @@ function Landing() {
                 <div className={styles.btn2}>
 
                     <h4><a href="/request">{t('stockrequest')}</a></h4></div>
+
+                    
 
             </div>
 
