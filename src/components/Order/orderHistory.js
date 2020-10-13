@@ -42,8 +42,8 @@ function OrderHistory() {
 
     useEffect(() => {
 
-        //let uid = firebase.auth().currentUser.uid
-        let uid = 'doXDSv87z0WcampS5YZ7a4Shf6s2'
+        let uid = firebase.auth().currentUser.uid
+        //let uid = 'doXDSv87z0WcampS5YZ7a4Shf6s2'
 
         firebase.database().ref('orders').on('value', (snapshot) => {
             var Custorders = snapshot.val();

@@ -1,16 +1,34 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
  
 import MapPicker from 'react-google-map-picker'
  
-const DefaultLocation = { lat: 10, lng: 106};
+const PureDefaultLocation = { lat: 7, lng: 81};
 const DefaultZoom = 10;
  
 const SimpleMap = (props) => {
+
+
  
-  const [defaultLocation, setDefaultLocation] = useState(DefaultLocation);
+  const [defaultLocation, setDefaultLocation] = useState(PureDefaultLocation);
  
   const [location, setLocation] = useState(defaultLocation);
   const [zoom, setZoom] = useState(DefaultZoom);
+
+
+  useEffect(() => {
+   
+    navigator.geolocation.getCurrentPosition(function(position) {
+      console.log("Latitude is :", position.coords.latitude);
+      console.log("Longitude is :", position.coords.longitude);
+
+      setDefaultLocation({
+        lat:position.coords.latitude,
+        lng:position.coords.longitude
+      })
+      props.setLocation({lat:position.coords.latitude, lng:position.coords.longitude});
+     
+    });
+  }, [])
  
   function handleChangeLocation (lat, lng){
     setLocation({lat:lat, lng:lng});
@@ -22,7 +40,7 @@ const SimpleMap = (props) => {
   }
  
   function handleResetLocation(){
-    setDefaultLocation({ ... DefaultLocation});
+    setDefaultLocation({ ...defaultLocation});
     setZoom(DefaultZoom);
    
   }
