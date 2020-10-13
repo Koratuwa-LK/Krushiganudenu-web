@@ -175,14 +175,14 @@ function Landing() {
 
                         {currentUser != null &&
 
-                            <li onClick={handleOpen} style={{ cursor: 'pointer', color: '#3F3F8F' }}>ORDERS</li>
+                        <li onClick={handleOpen} style={{ cursor: 'pointer', color: '#3F3F8F' }}>{t('orders')}</li>
                         }
                         {currentUser != null &&
 
-                            <li onClick={handleOpenNotifcationModal} style={{ cursor: 'pointer', color: '#3F3F8F' }}>NOTIFICATIONS</li>
+                        <li onClick={handleOpenNotifcationModal} style={{ cursor: 'pointer', color: '#3F3F8F' }}>{t('notifications')}</li>
                         }
                         {currentUser != null &&
-                            <li onClick={handleOpenDriverModal} style={{ cursor: 'pointer', color: '#3F3F8F' }}>DRIVERS</li>
+                            <li onClick={handleOpenDriverModal} style={{ cursor: 'pointer', color: '#3F3F8F' }}>{t('drivers')}</li>
                         }
                         <li><a href="/aboutus" style={{ color: '#3F3F8F' }}>{t('aboutus')}</a></li>
 
@@ -209,7 +209,7 @@ function Landing() {
 
                 <div className={styles.slug}>
                     <h1>KRUSHIGANUDENU.LK</h1>
-                    <p style={{ fontSize: 16, padding: 20, lineHeight: 2 }}>Online marketplace where farmers & buyers can meet bypassing all the physical barriers.Competitive prices & quick sell out is our promise.</p>
+                    <p style={{ fontSize: 16, padding: 20, lineHeight: 2 }}>{t('mainDescription')}</p>
                 </div>
 
 
@@ -237,7 +237,7 @@ function Landing() {
                 <div className={styles.btn4}>
                     <h4>
                         <Link to="/croplocations">
-                            <a>GROWERS IN THE ISLAND</a>
+            <a>{t('growerintheisland')}</a>
                         </Link>
                     </h4>
                 </div>
@@ -250,7 +250,7 @@ function Landing() {
 
                 <div className={styles.btn2}>
 
-                    <h4><a href="/request">{t('stockrequest')}</a></h4></div>
+                    <h4><a href="/request">{t('subStocks')}</a></h4></div>
 
                     
 
