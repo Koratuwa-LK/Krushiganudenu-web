@@ -195,7 +195,7 @@ function Landing() {
                         {currentUser != null &&
                             <li onClick={handleOpenDriverModal} style={{ cursor: 'pointer', color: '#3F3F8F' }}>{t('drivers')}</li>
                         }
-                        
+
 
                         <Select
                             labelId="demo-simple-select-label"
@@ -229,7 +229,7 @@ function Landing() {
                     <div className={styles.btn}>
                         <h4>
                             <Link to="/login">
-                                <a>SIGN IN</a>
+                                <a>{t('signIn')}</a>
                             </Link>
                         </h4>
 
@@ -238,7 +238,7 @@ function Landing() {
 
                 }
 
-{/* {currentUser === null &&
+                {/* {currentUser === null &&
                     <div className={styles.btn}>
                         <h4>
                             <Link to="/signUp">
