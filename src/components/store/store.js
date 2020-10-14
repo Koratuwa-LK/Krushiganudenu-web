@@ -189,6 +189,7 @@ handleChangeprice = (event, freshval) => {
           >
             <MenuItem value={'Meegoda'}>Meegoda</MenuItem>
             <MenuItem value={'Dambulla'}>Dambulla</MenuItem>
+            <MenuItem value={'Dambulla'}>Thambuththegama</MenuItem>
             
           <MenuItem value={'no filter'}>No filter (සියල්ල)</MenuItem>
           </Select>
@@ -228,7 +229,7 @@ handleChangeprice = (event, freshval) => {
 
                   <Grid key={value} item>
                     {/* {this.state.vege === 'no filter' || this.state.eco === 'no filter' || (this.state.vege.substring(0,5) === value.crop.substring(0,5) && this.state.eco === 'no filter') || this.state.eco === value.economicCenter || (this.state.vege.substring(0,5) === value.crop.substring(0,5) && this.state.eco === value.economicCenter)  ?    */}
-                      {(this.state.vege == 'no filter' && this.state.eco == 'no filter' || value.economicCenter == this.state.eco || this.state.vege.substring(0,5) == value.crop.substring(0,5)) && (this.state.vege == 'no filter' || this.state.vege.substring(0,5) == value.crop.substring(0,5)) && this.state.pricerange >= value.price ? 
+                      {(this.state.vege == 'no filter' && this.state.eco == 'no filter' || value.economicCenter == this.state.eco && this.state.vege.substring(0,5) == value.crop.substring(0,5)) && (this.state.vege == 'no filter' || this.state.vege.substring(0,5) == value.crop.substring(0,5)) && this.state.pricerange >= value.price ? 
 
                       <Paper style={{
                         /* height: 530, */ backgroundColor: 'white',

@@ -5,6 +5,7 @@ import { Button, Modal, TextField } from '@material-ui/core';
 import moment from 'moment';
 import axios from '../../stocks-list.js';
 import StorefrontIcon from '@material-ui/icons/Storefront';
+import {golden} from '../../assets/icons8-star-96.png';
 
 class Checkout extends Component {
 
@@ -249,7 +250,8 @@ class Checkout extends Component {
 
         <div className={styles.commentsbox}>
             <h4 style={{textAlign: 'center', marginBottom: 6}}>Reviews for the farmer</h4>
-                                {this.state.comments.map(comm => <div className={styles.tile1}><h4>"{comm.comment}"</h4> <p>{comm.rating}/5 - {comm.name}</p></div>) }
+                                {this.state.comments.map(comm => <div className={styles.tile1}>
+                                    <h4>"{comm.comment}"</h4>{comm.rating == 5 ? <div style={{flexDirection: 'row', display: 'flex', textAlign: 'center', marginLeft: '20%'}}><img style={{height: 40, width: 40}} src={require('../../assets/icons8-star-96.png')}/><img style={{height: 40, width: 40}} src={require('../../assets/icons8-star-96.png')}/><img style={{height: 40, width: 40}} src={require('../../assets/icons8-star-96.png')}/><img style={{height: 40, width: 40}} src={require('../../assets/icons8-star-96.png')}/><img style={{height: 40, width: 40}} src={require('../../assets/icons8-star-96.png')}/></div> : null }{comm.rating == 4 ? <div style={{flexDirection: 'row', display: 'flex', textAlign: 'center', marginLeft: '20%'}}><img style={{height: 40, width: 40}} src={require('../../assets/icons8-star-96.png')}/><img style={{height: 40, width: 40}} src={require('../../assets/icons8-star-96.png')}/><img style={{height: 40, width: 40}} src={require('../../assets/icons8-star-96.png')}/><img style={{height: 40, width: 40}} src={require('../../assets/icons8-star-96.png')}/></div> : null }{comm.rating == 3 ? <div style={{flexDirection: 'row', display: 'flex', textAlign: 'center', marginLeft: '20%'}}><img style={{height: 40, width: 40}} src={require('../../assets/icons8-star-96.png')}/><img style={{height: 40, width: 40}} src={require('../../assets/icons8-star-96.png')}/><img style={{height: 40, width: 40}} src={require('../../assets/icons8-star-96.png')}/></div> : null }{comm.rating == 2 ? <div style={{flexDirection: 'row', display: 'flex', textAlign: 'center', marginLeft: '20%'}}><img style={{height: 40, width: 40}} src={require('../../assets/icons8-star-96.png')}/><img style={{height: 40, width: 40}} src={require('../../assets/icons8-star-96.png')}/></div> : null }{comm.rating == 1 ? <div style={{flexDirection: 'row', display: 'flex', textAlign: 'center', marginLeft: '20%'}}><img style={{height: 40, width: 40}} src={require('../../assets/icons8-star-96.png')}/></div> : null } <p>{comm.rating}/5 - {comm.name}</p></div>) }
         </div>
 
             </div>
