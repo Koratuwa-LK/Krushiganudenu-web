@@ -237,20 +237,20 @@ function Landing() {
 
 
                 }
-{/* 
-{currentUser === null &&
+
+{/* {currentUser === null &&
                     <div className={styles.btn}>
                         <h4>
                             <Link to="/signUp">
-                                <a>SIGN UP</a>
+<a>{t('signUp')}</a>
                             </Link>
                         </h4>
 
                     </div>
 
 
-                }
- */}
+                } */}
+
 
                 <div className={styles.btn3}>
 
