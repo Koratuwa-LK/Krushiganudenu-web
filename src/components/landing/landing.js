@@ -49,13 +49,24 @@ function Landing() {
 
     function handleCloseDriverModal() {
         setOpenDriverBooking(false)
+        localStorage.removeItem('lat')
+        localStorage.removeItem('lng')
+        localStorage.removeItem('time')
+        localStorage.removeItem('email')
+        localStorage.removeItem('maximam_weight_can_carry')
+        localStorage.removeItem('first_name')
+        localStorage.removeItem('last_name')
+        localStorage.removeItem('nearest_eco_center')
+        localStorage.removeItem('ecocenter')
+        localStorage.removeItem('vehicle_color')
+        localStorage.removeItem('nic_no')
     };
 
-    function handleOpenNotifcationModal(){
+    function handleOpenNotifcationModal() {
         setOpenNotification(true)
     }
 
-    function handleCloseNotifcationModal(){
+    function handleCloseNotifcationModal() {
         setOpenNotification(false)
     }
 
@@ -112,7 +123,7 @@ function Landing() {
 
                 <NotificationPriceMatching />
             </Modal>
-            
+
             <div className={styles.responsive}>
                 <div className={styles.imgresponse}>
                     <img className={styles.imgresponseimg} src="https://images.unsplash.com/photo-1503762687835-129cc7a277e5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1576&q=80" ></img>
@@ -175,16 +186,16 @@ function Landing() {
 
                         {currentUser != null &&
 
-                        <li onClick={handleOpen} style={{ cursor: 'pointer', color: '#3F3F8F' }}>{t('orders')}</li>
+                            <li onClick={handleOpen} style={{ cursor: 'pointer', color: '#3F3F8F' }}>{t('orders')}</li>
                         }
                         {currentUser != null &&
 
-                        <li onClick={handleOpenNotifcationModal} style={{ cursor: 'pointer', color: '#3F3F8F' }}>{t('notifications')}</li>
+                            <li onClick={handleOpenNotifcationModal} style={{ cursor: 'pointer', color: '#3F3F8F' }}>{t('notifications')}</li>
                         }
                         {currentUser != null &&
                             <li onClick={handleOpenDriverModal} style={{ cursor: 'pointer', color: '#3F3F8F' }}>{t('drivers')}</li>
                         }
-                        <li><a href="/aboutus" style={{ color: '#3F3F8F' }}>{t('aboutus')}</a></li>
+                        
 
                         <Select
                             labelId="demo-simple-select-label"
@@ -227,22 +238,35 @@ function Landing() {
 
                 }
 
+{/* {currentUser === null &&
+                    <div className={styles.btn}>
+                        <h4>
+                            <Link to="/signUp">
+<a>{t('signUp')}</a>
+                            </Link>
+                        </h4>
 
-<div className={styles.btn3}>
+                    </div>
+
+
+                } */}
+
+
+                <div className={styles.btn3}>
 
                     <h4><a href="/store">{t('marketplace')}</a></h4>
 
-            </div>
+                </div>
 
                 <div className={styles.btn4}>
                     <h4>
                         <Link to="/croplocations">
-            <a>{t('growerintheisland')}</a>
+                            <a>{t('growerintheisland')}</a>
                         </Link>
                     </h4>
                 </div>
 
-               
+
 
 
 
@@ -252,7 +276,7 @@ function Landing() {
 
                     <h4><a href="/request">{t('subStocks')}</a></h4></div>
 
-                    
+
 
             </div>
 

@@ -60,7 +60,7 @@ class Requestnew extends Component {
                 <Grid container justify="center" spacing={2}>
         <Grid item xs={12} sm={6}>
         <div className={styles.tile}>
-        <h4 style={{marginBottom: 40}} >Fill out the request</h4>
+        <h4 style={{marginBottom: 40}} >Crop Subscription</h4>
         <FormControl className={styles.formControl} >
          <InputLabel id="demo-simple-select-label">Select the crop type</InputLabel>
         
