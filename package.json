@@ -19,7 +19,7 @@
     "i18next": "^19.5.2",
     "i18next-browser-languagedetector": "^5.0.0",
     "i18next-http-backend": "^1.0.16",
-    "moment": "^2.27.0",
+    "moment": "^2.29.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-google-map-picker": "^1.1.0",
